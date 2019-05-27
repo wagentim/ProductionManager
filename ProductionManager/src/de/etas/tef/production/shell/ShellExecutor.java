@@ -3,8 +3,6 @@ package de.etas.tef.production.shell;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
@@ -12,6 +10,7 @@ public class ShellExecutor implements Runnable
 {
 	private static final String SHELL_POWER_SHELL ="powershell.exe -file ";
 	private final Object lock;
+	private boolean exit = false;
 //	private static final String device = "shells/get_devices.ps1";
 //	private static final String sw = "shells/get_install_sw.ps1";
 	
@@ -30,64 +29,68 @@ public class ShellExecutor implements Runnable
 			return;
 		}
 		
-		queue.offer(handler);
+		queue.add(handler);
 		lock.notify();
 	}
 	
-	private void exec(String shellCommand, String shellFile, IShellContentHandler handler)
+	private void exec(IShellContentHandler handler)
 	{
-		String command = shellCommand + shellFile;
+		String command = handler.getShellCommand() + handler.getShellFile();
 		Process shellProcess;
-		int count = 0;
 		try
 		{
 			shellProcess = Runtime.getRuntime().exec(command);
 			shellProcess.getOutputStream().close();
 			
 			String line;
+			StringBuffer sb_content = new StringBuffer();
+			StringBuffer sb_error = new StringBuffer();
 
 			BufferedReader stdout = new BufferedReader(new InputStreamReader(
 					shellProcess.getInputStream(), "utf-8"));
 			while ((line = stdout.readLine()) != null)
 			{
-				System.out.println(line);
-				count++;
+				sb_content.append(line);
 			}
 			stdout.close();
+
 			BufferedReader stderr = new BufferedReader(new InputStreamReader(
 					shellProcess.getErrorStream(), "utf-8"));
+			
 			while ((line = stderr.readLine()) != null)
 			{
-				System.out.println(line);
+				sb_error.append(line);
 			}
+			
 			stderr.close();
-			System.out.println("Number: " + count);
+			
+			handler.processContent(sb_content);
+			handler.processError(sb_error);
+			
 		} catch (IOException e)
 		{
 			e.printStackTrace();
 		}
 	}
 	
-	public static void main(String[] args)
-	{
-//		ShellExecutor se = new ShellExecutor();
-//		se.exec(SHELL_POWER_SHELL, sw, null);
-	}
 
 	@Override
 	public void run()
 	{
-		while(handlers.size() <= 0)
+		while(!exit)
 		{
-			try
+			while(queue.isEmpty())
 			{
-				lock.wait();
-			} catch (InterruptedException e)
-			{
-				e.printStackTrace();
+				try
+				{
+					lock.wait();
+				} catch (InterruptedException e)
+				{
+					e.printStackTrace();
+				}		
 			}
-			
-			
+			IShellContentHandler handler = queue.poll();
+			exec(handler);
 		}
 	}
 }
