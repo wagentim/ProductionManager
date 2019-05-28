@@ -12,10 +12,10 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 
 import de.etas.tef.production.help.ActionManager;
+import de.etas.tef.production.help.Constants;
 import de.wagentim.protector.controller.MainController;
 import de.wagentim.protector.entity.CellIndex;
 import de.wagentim.protector.entity.Record;
-import de.wagentim.protector.helper.Constants;
 
 public class TreeListener extends CellEditingListener
 {

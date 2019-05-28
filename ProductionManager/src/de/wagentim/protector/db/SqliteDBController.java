@@ -196,4 +196,58 @@ public class SqliteDBController implements IDBController
 		
 		return Collections.emptyMap();
 	}
+
+	@Override
+	public boolean updateRecordName(int id, String newValue)
+	{
+		sb.delete(0, sb.length());
+		
+		sb.append("UPDATE record SET record_name = '").append(newValue).append("' WHERE record_id = ").append(id).append(";");
+		
+//		System.out.println(sb.toString());
+		
+		handler.openDB();
+		
+		try
+		{
+			return handler.executeUpdate(sb.toString()) == 0 ? true : false;
+		}
+		catch (ClassNotFoundException e)
+		{
+			e.printStackTrace();
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
+
+	@Override
+	public boolean updateItem(int record_id, int item_id, String newKey, String newValue)
+	{
+		sb.delete(0, sb.length());
+		
+		sb.append("UPDATE item SET item_key = '").append(newKey).append("', item_value = '").append(newValue).append("' WHERE record_id = ").append(record_id).append(" AND item_id = ").append(item_id).append(";");
+		
+		System.out.println(sb.toString());
+		
+//		handler.openDB();
+//		
+//		try
+//		{
+//			return handler.executeUpdate(sb.toString()) == 0 ? true : false;
+//		}
+//		catch (ClassNotFoundException e)
+//		{
+//			e.printStackTrace();
+//		}
+//		catch (SQLException e)
+//		{
+//			e.printStackTrace();
+//		}
+		
+		return false;
+	}
 }

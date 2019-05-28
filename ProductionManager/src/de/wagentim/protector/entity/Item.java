@@ -2,7 +2,7 @@ package de.wagentim.protector.entity;
 
 import java.io.Serializable;
 
-import de.wagentim.protector.helper.Constants;
+import de.etas.tef.production.help.Constants;
 
 public class Item implements Serializable
 {

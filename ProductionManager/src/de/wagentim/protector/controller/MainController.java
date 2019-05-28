@@ -4,10 +4,10 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import de.etas.tef.production.help.Constants;
 import de.wagentim.protector.db.IDBController;
 import de.wagentim.protector.entity.CellIndex;
 import de.wagentim.protector.entity.Record;
-import de.wagentim.protector.helper.Constants;
 
 public class MainController
 {

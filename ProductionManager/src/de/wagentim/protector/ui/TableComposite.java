@@ -29,9 +29,9 @@ import org.eclipse.swt.widgets.TableItem;
 
 import de.etas.tef.config.entity.KeyValuePair;
 import de.etas.tef.production.help.ActionManager;
+import de.etas.tef.production.help.Constants;
 import de.wagentim.protector.controller.MainController;
 import de.wagentim.protector.entity.Record;
-import de.wagentim.protector.helper.Constants;
 
 public class TableComposite extends AbstractComposite
 {

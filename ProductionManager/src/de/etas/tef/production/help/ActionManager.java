@@ -3,8 +3,6 @@ package de.etas.tef.production.help;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.wagentim.protector.listener.IActionListener;
-
 public class ActionManager
 {
 	public static ActionManager INSTANCE = new ActionManager();

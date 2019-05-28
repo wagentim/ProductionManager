@@ -1,10 +1,5 @@
 package de.wagentim.protector.db;
 
-import java.util.Iterator;
-
-import de.wagentim.protector.entity.Item;
-import de.wagentim.protector.entity.Record;
-
 public class DBTest
 {
 	public static void main(String[] args)
@@ -22,18 +17,22 @@ public class DBTest
 //		c.insertNewRecord(IDManager.INSTANCE().getRandomInteger(), "Hello");
 //		c.insertNewItem(IDManager.INSTANCE().getRandomInteger(), IDManager.INSTANCE().getRandomInteger(), "Hello", "World");
 		
-		Iterator<Record> iterator = c.getAllRecords().values().iterator();
+//		Iterator<Record> iterator = c.getAllRecords().values().iterator();
+//		
+//		while(iterator.hasNext())
+//		{
+//			System.out.println(iterator.next().toString());
+//		}
+//		
+//		Iterator<Item> it = c.getAllItems().values().iterator();
+//		
+//		while(it.hasNext())
+//		{
+//			System.out.println(it.next().toString());
+//		}
 		
-		while(iterator.hasNext())
-		{
-			System.out.println(iterator.next().toString());
-		}
+//		c.updateRecordName(654, "wo");
 		
-		Iterator<Item> it = c.getAllItems().values().iterator();
-		
-		while(it.hasNext())
-		{
-			System.out.println(it.next().toString());
-		}
+		c.updateItem(123, 456, "Hello", "World");
 	}
 }

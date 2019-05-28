@@ -12,8 +12,8 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
 import de.etas.tef.production.help.ActionManager;
+import de.etas.tef.production.help.Constants;
 import de.wagentim.protector.controller.MainController;
-import de.wagentim.protector.helper.Constants;
 
 public class SearchComposite extends AbstractComposite
 {

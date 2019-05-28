@@ -8,8 +8,8 @@ import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.graphics.Color;
 
 import de.etas.tef.production.help.ActionManager;
-import de.wagentim.protector.helper.Constants;
-import de.wagentim.protector.listener.IActionListener;
+import de.etas.tef.production.help.Constants;
+import de.etas.tef.production.help.IActionListener;
 
 public class InfoBlockWriter implements IActionListener
 {

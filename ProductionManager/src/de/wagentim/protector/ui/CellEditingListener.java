@@ -17,10 +17,10 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.TreeItem;
 
 import de.etas.tef.production.help.ActionManager;
+import de.etas.tef.production.help.Constants;
+import de.etas.tef.production.help.IActionListener;
 import de.wagentim.protector.controller.MainController;
 import de.wagentim.protector.entity.CellIndex;
-import de.wagentim.protector.helper.Constants;
-import de.wagentim.protector.listener.IActionListener;
 
 public abstract class CellEditingListener implements MouseListener, IActionListener, KeyListener, SelectionListener
 {

@@ -14,4 +14,6 @@ public interface IDBController
 	boolean insertNewItem(int recordId, int itemId, String key, String value);
 	Map<Integer, Record> getAllRecords();
 	Map<Integer, Item> getAllItems();
+	boolean updateRecordName(int id, String newValue);
+	boolean updateItem(int record_id, int item_id, String newKey, String newValue);
 }

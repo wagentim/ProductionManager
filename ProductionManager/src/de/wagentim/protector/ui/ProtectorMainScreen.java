@@ -7,23 +7,19 @@ import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MenuItem;
-import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
 
 import de.etas.tef.production.help.ActionManager;
+import de.etas.tef.production.help.IActionListener;
 import de.wagentim.protector.controller.InfoBlockWriter;
 import de.wagentim.protector.controller.MainController;
-import de.wagentim.protector.helper.Constants;
-import de.wagentim.protector.listener.IActionListener;
 
 public class ProtectorMainScreen extends Composite implements IActionListener
 {
