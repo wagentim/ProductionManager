@@ -1,6 +1,14 @@
 package de.wagentim.protector.db;
 
 import java.sql.SQLException;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import de.wagentim.protector.entity.Item;
+import de.wagentim.protector.entity.Record;
 
 public class SqliteDBController implements IDBController
 {
@@ -109,5 +117,83 @@ public class SqliteDBController implements IDBController
 		}
 		
 		return false;
+	}
+	
+	public Map<Integer, Record> getAllRecords()
+	{
+		sb.delete(0, sb.length());
+		sb.append("SELECT * FROM record");
+		
+		handler.openDB();
+		
+		try
+		{
+			List<Record> records = handler.executeQuery(sb.toString(), new RecordResultExtractor());
+			
+			if( !records.isEmpty() )
+			{
+				Map<Integer, Record> result = new HashMap<Integer, Record>();
+				
+				Iterator<Record> it = records.iterator();
+				
+				while(it.hasNext())
+				{
+					Record r = it.next();
+					result.put(r.getId(), r);
+				}
+				
+				return result;
+			}
+			
+		} catch (ClassNotFoundException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return Collections.emptyMap();
+	}
+	
+	public Map<Integer, Item> getAllItems()
+	{
+		sb.delete(0, sb.length());
+		sb.append("SELECT * FROM item");
+		
+		handler.openDB();
+		
+		try
+		{
+			List<Item> items = handler.executeQuery(sb.toString(), new ItemResultExtractor());
+			
+			if( !items.isEmpty() )
+			{
+				Map<Integer, Item> result = new HashMap<Integer, Item>();
+				
+				Iterator<Item> it = items.iterator();
+				
+				while(it.hasNext())
+				{
+					Item i = it.next();
+					result.put(i.getBlockId(), i);
+				}
+				
+				return result;
+			}
+			
+		} catch (ClassNotFoundException e)
+		{
+			e.printStackTrace();
+		} catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		
+		
+		return Collections.emptyMap();
 	}
 }

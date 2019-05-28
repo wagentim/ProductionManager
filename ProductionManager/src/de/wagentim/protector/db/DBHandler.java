@@ -1,10 +1,7 @@
 package de.wagentim.protector.db;
 
-import java.util.List;
 
-import de.wagentim.protector.entity.Record;
-
-public class DBHandler implements IDBController
+public class DBHandler
 {
 
 //	private static final String dbLocation = "D:\\workspaces\\Protector\\db\\info.odb";

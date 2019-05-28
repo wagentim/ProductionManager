@@ -13,15 +13,13 @@ public class SqliteDBHandler
 	private Connection connection;
 	private Statement statement;
 	private ResultSet resultSet;
-	private final String dbPath = "D:\\tmp\\myDB.sqlite3";
 
 	public boolean openDB()
 	{
 		try
 		{
-			Class.forName("org.sqlite.JDBC");
-			connection = DriverManager.getConnection("jdbc:sqlite:" + dbPath);
-
+			Class.forName(ISQLConstants.SQLITE_JDBC);
+			connection = DriverManager.getConnection(ISQLConstants.SQLITE_CONNECTION);
 			return true;
 		}
 		catch (ClassNotFoundException e)
@@ -36,7 +34,7 @@ public class SqliteDBHandler
 		return false;
 	}
 
-	public <T> T executeQuery(String sql, ResultSetExtractor<T> rse) throws SQLException, ClassNotFoundException
+	public <T> T executeQuery(String sql, IResultSetExtractor<T> rse) throws SQLException, ClassNotFoundException
 	{
 		try
 		{

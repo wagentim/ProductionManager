@@ -4,9 +4,6 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.sound.midi.MidiDevice.Info;
-
-import de.wagentim.protector.db.DBHandler;
 import de.wagentim.protector.db.IDBController;
 import de.wagentim.protector.entity.CellIndex;
 import de.wagentim.protector.entity.Record;
@@ -21,7 +18,7 @@ public class MainController
 	
 	public MainController()
 	{
-		dbHandler = new DBHandler();
+//		dbHandler = new DBHandler();
 	}
 	
 	public void loadData()

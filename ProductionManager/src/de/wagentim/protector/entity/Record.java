@@ -13,7 +13,7 @@ public class Record implements Serializable
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private final double id;
+	private final int id;
 	private String name = Constants.EMPTY_STRING;
 	
 	public void setName(String name)
@@ -21,18 +21,18 @@ public class Record implements Serializable
 		this.name = name;
 	}
 
-	public Record(final double id)
+	public Record(final int id)
 	{
 		this.id = id;
 	}
 	
-	public Record(final double id, final String name)
+	public Record(final int id, final String name)
 	{
 		this.id = id;
 		this.name = name;
 	}
 
-	public double getId()
+	public int getId()
 	{
 		return id;
 	}

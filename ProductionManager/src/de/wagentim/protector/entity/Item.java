@@ -14,27 +14,27 @@ public class Item implements Serializable
 	
 	private String key = Constants.EMPTY_STRING;
 	private String value = Constants.EMPTY_STRING;
-	private final double blockId;
-	private final double itemId;
+	private final int blockId;
+	private final int itemId;
 	
-	public Item(final double blockId, final double itemId)
+	public Item(final int blockId, final int itemId)
 	{
 		super();
 		this.blockId = blockId;
 		this.itemId = itemId;
 	}
 	
-	public double getBlockId()
+	public int getBlockId()
 	{
 		return blockId;
 	}
 
-	public double getItemId()
+	public int getItemId()
 	{
 		return itemId;
 	}
 
-	public Item(final double blockId, final double itemId, String key, String value)
+	public Item(final int blockId, final int itemId, String key, String value)
 	{
 		super();
 		this.key = key;
