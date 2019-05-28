@@ -1,4 +1,4 @@
-package de.etas.tef.production.ui.common;
+package de.wagentim.common.ui;
 
 public class Starter
 {

@@ -28,10 +28,10 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 
 import de.etas.tef.config.entity.KeyValuePair;
-import de.etas.tef.production.help.ActionManager;
 import de.etas.tef.production.help.IConstants;
-import de.etas.tef.production.help.ImageRegister;
-import de.wagentim.protector.controller.MainController;
+import de.wagentim.common.ImageRegister;
+import de.wagentim.protector.common.ActionManager;
+import de.wagentim.protector.controller.ProtectorController;
 import de.wagentim.protector.entity.Record;
 
 public class TableComposite extends AbstractComposite
@@ -51,7 +51,7 @@ public class TableComposite extends AbstractComposite
 	
 	private SearchTreeComponent searchTree;
 	
-	public TableComposite(Composite parent, int style, MainController controller, ImageRegister imageRegister)
+	public TableComposite(Composite parent, int style, ProtectorController controller, ImageRegister imageRegister)
 	{
 		super(parent, style, controller, imageRegister);
 
@@ -73,7 +73,7 @@ public class TableComposite extends AbstractComposite
 		return table;
 	}
 
-	protected void initMainComposite(Composite comp, MainController controller)
+	protected void initMainComposite(Composite comp, ProtectorController controller)
 	{
 		SashForm sf = new SashForm(comp, SWT.HORIZONTAL);
 		GridData gd = new GridData(GridData.FILL_BOTH);

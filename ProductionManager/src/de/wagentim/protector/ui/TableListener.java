@@ -15,9 +15,9 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 
-import de.etas.tef.production.help.ActionManager;
 import de.etas.tef.production.help.IConstants;
-import de.wagentim.protector.controller.MainController;
+import de.wagentim.protector.common.ActionManager;
+import de.wagentim.protector.controller.ProtectorController;
 import de.wagentim.protector.entity.CellIndex;
 
 public class TableListener extends CellEditingListener
@@ -25,7 +25,7 @@ public class TableListener extends CellEditingListener
 
 	private CellIndex cell = null;
 	
-	public TableListener(Table table, MainController controller)
+	public TableListener(Table table, ProtectorController controller)
 	{
 		super(table, controller);
 	}

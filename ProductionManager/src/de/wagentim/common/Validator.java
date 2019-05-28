@@ -1,10 +1,12 @@
-package de.etas.tef.production.help;
+package de.wagentim.common;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
+import de.etas.tef.production.help.IConstants;
 
 public final class Validator
 {

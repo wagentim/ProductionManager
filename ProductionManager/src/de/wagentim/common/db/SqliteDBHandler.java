@@ -1,4 +1,4 @@
-package de.wagentim.protector.db;
+package de.wagentim.common.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,18 +8,21 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.wagentim.protector.db.IResultSetExtractor;
+import de.wagentim.protector.db.RowMapper;
+
 public class SqliteDBHandler
 {
 	private Connection connection;
 	private Statement statement;
 	private ResultSet resultSet;
 
-	public boolean openDB()
+	public boolean openDB(String jdbc, String conn)
 	{
 		try
 		{
-			Class.forName(ISQLConstants.SQLITE_JDBC);
-			connection = DriverManager.getConnection(ISQLConstants.SQLITE_CONNECTION);
+			Class.forName(jdbc);
+			connection = DriverManager.getConnection(conn);
 			return true;
 		}
 		catch (ClassNotFoundException e)

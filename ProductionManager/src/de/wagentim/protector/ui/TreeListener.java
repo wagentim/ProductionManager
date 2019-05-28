@@ -11,16 +11,16 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 
-import de.etas.tef.production.help.ActionManager;
 import de.etas.tef.production.help.IConstants;
-import de.wagentim.protector.controller.MainController;
+import de.wagentim.protector.common.ActionManager;
+import de.wagentim.protector.controller.ProtectorController;
 import de.wagentim.protector.entity.CellIndex;
 import de.wagentim.protector.entity.Record;
 
 public class TreeListener extends CellEditingListener
 {
 
-	public TreeListener(Tree tree, MainController controller)
+	public TreeListener(Tree tree, ProtectorController controller)
 	{
 		super(tree, controller);
 	}

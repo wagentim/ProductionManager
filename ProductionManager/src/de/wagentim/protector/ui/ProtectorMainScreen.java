@@ -13,17 +13,17 @@ import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
 
-import de.etas.tef.production.help.ActionManager;
 import de.etas.tef.production.help.IActionListener;
 import de.etas.tef.production.help.IConstants;
-import de.etas.tef.production.help.IImageConstants;
-import de.etas.tef.production.help.ImageRegister;
+import de.wagentim.common.IImageConstants;
+import de.wagentim.common.ImageRegister;
+import de.wagentim.protector.common.ActionManager;
 import de.wagentim.protector.controller.InfoBlockWriter;
-import de.wagentim.protector.controller.MainController;
+import de.wagentim.protector.controller.ProtectorController;
 
 public class ProtectorMainScreen extends Composite implements IActionListener
 {
-	private final MainController controller;
+	private final ProtectorController controller;
 	private MenuItem showInfoPaneItem;
 	private StyledText txtInfoBlock;
 	private SashForm main;
@@ -37,7 +37,7 @@ public class ProtectorMainScreen extends Composite implements IActionListener
 		super(parent, style);
 		this.imageRegister = imageRegister;
 		
-		controller = new MainController();
+		controller = new ProtectorController();
 		initMainScreen(this);
 		initMainComponents(this);
 		
@@ -81,7 +81,7 @@ public class ProtectorMainScreen extends Composite implements IActionListener
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-
+				controller.loadAllData();
 			}
 		});
 	}

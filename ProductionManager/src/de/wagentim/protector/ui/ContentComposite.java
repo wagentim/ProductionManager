@@ -5,12 +5,12 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 
-import de.etas.tef.production.help.ImageRegister;
-import de.wagentim.protector.controller.MainController;
+import de.wagentim.common.ImageRegister;
+import de.wagentim.protector.controller.ProtectorController;
 
 public class ContentComposite extends AbstractComposite
 {
-	public ContentComposite(Composite composite, int style, MainController controller, ImageRegister imageRegister)
+	public ContentComposite(Composite composite, int style, ProtectorController controller, ImageRegister imageRegister)
 	{
 		super(composite, style, controller, imageRegister);
 

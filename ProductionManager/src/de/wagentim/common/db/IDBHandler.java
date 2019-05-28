@@ -1,4 +1,4 @@
-package de.etas.tef.production.db;
+package de.wagentim.common.db;
 
 public interface IDBHandler
 {

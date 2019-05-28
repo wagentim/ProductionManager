@@ -1,4 +1,4 @@
-package de.etas.tef.production.ui.common;
+package de.wagentim.common.ui;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Rectangle;

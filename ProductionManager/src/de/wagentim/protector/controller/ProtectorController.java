@@ -3,26 +3,36 @@ package de.wagentim.protector.controller;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import de.etas.tef.production.help.IConstants;
+import de.wagentim.protector.common.ActionManager;
+import de.wagentim.protector.common.IProtectorActionType;
 import de.wagentim.protector.db.IDBController;
+import de.wagentim.protector.db.SqliteDBController;
 import de.wagentim.protector.entity.CellIndex;
+import de.wagentim.protector.entity.Item;
 import de.wagentim.protector.entity.Record;
 
-public class MainController
+public class ProtectorController
 {
 	private List<Record> itemList = Collections.emptyList();
-	private IDBController dbHandler = null;
+	private final IDBController dbController;
 	private boolean isEditingBlocked = true;
 	private String selectedItem = IConstants.EMPTY_STRING;
+	private Map<Integer, Record> records = Collections.emptyMap();
+	private Map<Integer, Item> items = Collections.emptyMap();
 	
-	public MainController()
+	public ProtectorController()
 	{
-//		dbHandler = new DBHandler();
+		dbController = new SqliteDBController();
 	}
 	
-	public void loadData()
+	public void loadAllData()
 	{
+		records = dbController.getAllRecords();
+		items = dbController.getAllItems();
+		ActionManager.INSTANCE.sendAction(IProtectorActionType.ACTION_DATA_LOADED, records.values());
 	}
 	
 	public String[] getItemNames()

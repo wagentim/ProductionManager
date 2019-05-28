@@ -1,4 +1,4 @@
-package de.etas.tef.production.ui.common;
+package de.wagentim.common.ui;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -27,8 +27,8 @@ import org.eclipse.swt.widgets.TabItem;
 
 import de.etas.tef.config.ui.core.ConfigEditorMainScreen;
 import de.etas.tef.production.help.IConstants;
-import de.etas.tef.production.help.IImageConstants;
-import de.etas.tef.production.help.ImageRegister;
+import de.wagentim.common.IImageConstants;
+import de.wagentim.common.ImageRegister;
 import de.wagentim.protector.ui.ProtectorMainScreen;
 
 public class MainScreen

@@ -4,7 +4,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MenuAdapter;
 import org.eclipse.swt.events.MenuEvent;
 import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -14,11 +13,12 @@ import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 
-import de.etas.tef.production.help.ActionManager;
 import de.etas.tef.production.help.IConstants;
-import de.etas.tef.production.help.ImageRegister;
-import de.etas.tef.production.ui.common.SearchComposite;
-import de.wagentim.protector.controller.MainController;
+import de.wagentim.common.IImageConstants;
+import de.wagentim.common.ImageRegister;
+import de.wagentim.common.ui.SearchComposite;
+import de.wagentim.protector.common.ActionManager;
+import de.wagentim.protector.controller.ProtectorController;
 import de.wagentim.protector.entity.Record;
 
 public class SearchTreeComponent extends AbstractComposite
@@ -31,14 +31,7 @@ public class SearchTreeComponent extends AbstractComposite
 	private TreeListener tl;
 	private Menu rightClickMenu;
 	
-	public final Image IMAGE_ADD;
-	public final Image IMAGE_REMOVE;
-	public final Image IMAGE_COPY;
-	public final Image IMAGE_PASTE;
-	public final Image IMAGE_BLOCK;
-	public final Image IMAGE_ROOT;
-	
-	public SearchTreeComponent(Composite parent, int style, MainController controller, ImageRegister imageRegister)
+	public SearchTreeComponent(Composite parent, int style, ProtectorController controller, ImageRegister imageRegister)
 	{
 		super(parent, style, controller, imageRegister);
 		
@@ -47,17 +40,10 @@ public class SearchTreeComponent extends AbstractComposite
 		this.setLayout(layout);
 		this.setLayoutData(new GridData(GridData.FILL_BOTH));
 		
-		IMAGE_ADD = new Image(parent.getDisplay(), "icons/add.png");
-		IMAGE_REMOVE = new Image(parent.getDisplay(), "icons/remove.png");
-		IMAGE_COPY = new Image(parent.getDisplay(), "icons/copy.png");
-		IMAGE_PASTE = new Image(parent.getDisplay(), "icons/paste.png");
-		IMAGE_BLOCK = new Image(parent.getDisplay(), "icons/record.png");
-		IMAGE_ROOT = new Image(parent.getDisplay(), "icons/root.png");
-		
 		initComponent(controller);
 	}
 
-	protected void initComponent(MainController controller)
+	protected void initComponent(ProtectorController controller)
 	{
 		new SearchComposite(this, SWT.BORDER, controller, imageRegister);
 		
@@ -68,7 +54,7 @@ public class SearchTreeComponent extends AbstractComposite
 		
 		root = new TreeItem(itemList, SWT.NONE);
 		root.setText(IConstants.TXT_RECORD);
-		root.setImage(IMAGE_ROOT);
+		root.setImage(imageRegister.getImage(IImageConstants.IMAGE_ROOT));
 		
 		tl = new TreeListener(itemList, controller);
 		itemList.addMouseListener(tl);
@@ -102,24 +88,24 @@ public class SearchTreeComponent extends AbstractComposite
 	            
 	            MenuItem copyItem = new MenuItem(rightClickMenu, SWT.NONE);
 	            copyItem.setText(IConstants.TXT_COPY);
-	            copyItem.setImage(IMAGE_COPY);
+	            copyItem.setImage(imageRegister.getImage(IImageConstants.IMAGE_COPY));
 	            copyItem.addSelectionListener(listener);
 	            
 	            MenuItem pasteItem = new MenuItem(rightClickMenu, SWT.NONE);
 	            pasteItem.setText(IConstants.TXT_PASTE);
-	            pasteItem.setImage(IMAGE_PASTE);
+	            pasteItem.setImage(imageRegister.getImage(IImageConstants.IMAGE_PASTE));
 	            pasteItem.addSelectionListener(listener);
 	            
 	            new MenuItem(rightClickMenu, SWT.SEPARATOR);
 	            
 	            MenuItem newItem = new MenuItem(rightClickMenu, SWT.NONE);
 	            newItem.setText(IConstants.TXT_BTN_ADD);
-	            newItem.setImage(IMAGE_ADD);
+	            newItem.setImage(imageRegister.getImage(IImageConstants.IMAGE_ADD));
 	            newItem.addSelectionListener(listener);
 
 	            MenuItem deleteItem = new MenuItem(rightClickMenu, SWT.NONE);
 	            deleteItem.setText(IConstants.TXT_BTN_DELETE);
-	            deleteItem.setImage(IMAGE_REMOVE);
+	            deleteItem.setImage(imageRegister.getImage(IImageConstants.IMAGE_REMOVE));
 	            deleteItem.addSelectionListener(listener);
 	            
 	            
@@ -154,7 +140,7 @@ public class SearchTreeComponent extends AbstractComposite
 			it = new TreeItem(parent, SWT.NONE, index);
 		}
 		it.setText(blockName);
-		it.setImage(IMAGE_BLOCK);
+		it.setImage(imageRegister.getImage(IImageConstants.IMAGE_RECORD));
 	}
 
 	

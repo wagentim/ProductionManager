@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import de.wagentim.common.db.SqliteDBHandler;
 import de.wagentim.protector.entity.Item;
 import de.wagentim.protector.entity.Record;
 
@@ -25,7 +26,7 @@ public class SqliteDBController implements IDBController
 	{
 		String state = "CREATE TABLE record (record_id INTEGER PRIMARY KEY, record_name STRING NOT NULL);";
 		
-		handler.openDB();
+		handler.openDB(ISQLConstants.SQLITE_JDBC, ISQLConstants.SQLITE_CONNECTION);
 		
 		try
 		{
@@ -47,7 +48,7 @@ public class SqliteDBController implements IDBController
 	{
 		String state = "CREATE TABLE item (record_id INTEGER, item_id INTEGER, item_key STRING NOT NULL, item_value STRING NOT NULL);";
 		
-		handler.openDB();
+		handler.openDB(ISQLConstants.SQLITE_JDBC, ISQLConstants.SQLITE_CONNECTION);
 		
 		try
 		{
@@ -74,7 +75,7 @@ public class SqliteDBController implements IDBController
 		
 //		System.out.println(sb.toString());
 		
-		handler.openDB();
+		handler.openDB(ISQLConstants.SQLITE_JDBC, ISQLConstants.SQLITE_CONNECTION);
 		
 		try
 		{
@@ -101,7 +102,7 @@ public class SqliteDBController implements IDBController
 		
 //		System.out.println(sb.toString());
 		
-		handler.openDB();
+		handler.openDB(ISQLConstants.SQLITE_JDBC, ISQLConstants.SQLITE_CONNECTION);
 		
 		try
 		{
@@ -124,7 +125,7 @@ public class SqliteDBController implements IDBController
 		sb.delete(0, sb.length());
 		sb.append("SELECT * FROM record");
 		
-		handler.openDB();
+		handler.openDB(ISQLConstants.SQLITE_JDBC, ISQLConstants.SQLITE_CONNECTION);
 		
 		try
 		{
@@ -164,7 +165,7 @@ public class SqliteDBController implements IDBController
 		sb.delete(0, sb.length());
 		sb.append("SELECT * FROM item");
 		
-		handler.openDB();
+		handler.openDB(ISQLConstants.SQLITE_JDBC, ISQLConstants.SQLITE_CONNECTION);
 		
 		try
 		{
@@ -206,7 +207,7 @@ public class SqliteDBController implements IDBController
 		
 //		System.out.println(sb.toString());
 		
-		handler.openDB();
+		handler.openDB(ISQLConstants.SQLITE_JDBC, ISQLConstants.SQLITE_CONNECTION);
 		
 		try
 		{
@@ -231,22 +232,22 @@ public class SqliteDBController implements IDBController
 		
 		sb.append("UPDATE item SET item_key = '").append(newKey).append("', item_value = '").append(newValue).append("' WHERE record_id = ").append(record_id).append(" AND item_id = ").append(item_id).append(";");
 		
-		System.out.println(sb.toString());
+//		System.out.println(sb.toString());
 		
-//		handler.openDB();
-//		
-//		try
-//		{
-//			return handler.executeUpdate(sb.toString()) == 0 ? true : false;
-//		}
-//		catch (ClassNotFoundException e)
-//		{
-//			e.printStackTrace();
-//		}
-//		catch (SQLException e)
-//		{
-//			e.printStackTrace();
-//		}
+		handler.openDB(ISQLConstants.SQLITE_JDBC, ISQLConstants.SQLITE_CONNECTION);
+		
+		try
+		{
+			return handler.executeUpdate(sb.toString()) == 0 ? true : false;
+		}
+		catch (ClassNotFoundException e)
+		{
+			e.printStackTrace();
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
 		
 		return false;
 	}

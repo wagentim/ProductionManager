@@ -16,23 +16,23 @@ import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.TreeItem;
 
-import de.etas.tef.production.help.ActionManager;
 import de.etas.tef.production.help.IConstants;
 import de.etas.tef.production.help.IActionListener;
-import de.wagentim.protector.controller.MainController;
+import de.wagentim.protector.common.ActionManager;
+import de.wagentim.protector.controller.ProtectorController;
 import de.wagentim.protector.entity.CellIndex;
 
 public abstract class CellEditingListener implements MouseListener, IActionListener, KeyListener, SelectionListener
 {
 	
 	private final Composite composite;
-	protected final MainController controller;
+	protected final ProtectorController controller;
 
 	protected ControlEditor editor = null;
 	protected String newValue = IConstants.EMPTY_STRING;
 	protected String oldValue = IConstants.EMPTY_STRING;
 	
-	public CellEditingListener(Composite composite, MainController controller)
+	public CellEditingListener(Composite composite, ProtectorController controller)
 	{
 		this.composite = composite;
 		this.controller = controller;

@@ -7,8 +7,8 @@ import org.eclipse.swt.custom.StyleRange;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.graphics.Color;
 
-import de.etas.tef.production.help.ActionManager;
 import de.etas.tef.production.help.IConstants;
+import de.wagentim.protector.common.ActionManager;
 import de.etas.tef.production.help.IActionListener;
 
 public class InfoBlockWriter implements IActionListener
@@ -20,7 +20,7 @@ public class InfoBlockWriter implements IActionListener
 	
 	private String txt = IConstants.EMPTY_STRING;
 
-	public InfoBlockWriter(final StyledText infoBlock, MainController controller)
+	public InfoBlockWriter(final StyledText infoBlock, ProtectorController controller)
 	{
 		if (null == infoBlock)
 		{

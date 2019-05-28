@@ -1,4 +1,4 @@
-package de.etas.tef.production.ui.common;
+package de.wagentim.common.ui;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
@@ -12,22 +12,22 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
-import de.etas.tef.production.help.ActionManager;
 import de.etas.tef.production.help.IConstants;
-import de.etas.tef.production.help.IImageConstants;
-import de.etas.tef.production.help.ImageRegister;
-import de.wagentim.protector.controller.MainController;
+import de.wagentim.common.IImageConstants;
+import de.wagentim.common.ImageRegister;
+import de.wagentim.protector.common.ActionManager;
+import de.wagentim.protector.controller.ProtectorController;
 import de.wagentim.protector.ui.AbstractComposite;
 
 public class SearchComposite extends AbstractComposite
 {
 	
-	protected MainController controller;
+	protected ProtectorController controller;
 	private Text searchText;
 	private final Color white;
 	private Label cancelImage;
 	
-	public SearchComposite(Composite parent, int style, MainController controller, ImageRegister imageRegister)
+	public SearchComposite(Composite parent, int style, ProtectorController controller, ImageRegister imageRegister)
 	{
 		super(parent, style, controller, imageRegister);
 		

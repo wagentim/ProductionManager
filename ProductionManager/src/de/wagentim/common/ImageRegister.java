@@ -1,4 +1,4 @@
-package de.etas.tef.production.help;
+package de.wagentim.common;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,13 +8,13 @@ import org.eclipse.swt.widgets.Display;
 
 public class ImageRegister
 {
-	private final Map<String, Image> mapper;
+	private final Map<Integer, Image> mapper;
 	private final Display display;
 	
 	public ImageRegister(Display display)
 	{
 		this.display = display;
-		mapper = new HashMap<String, Image>();
+		mapper = new HashMap<Integer, Image>();
 		initImages();
 	}
 	
@@ -30,6 +30,13 @@ public class ImageRegister
 		mapper.put(IImageConstants.IMAGE_LOAD, createImage("icons/load.png"));
 		mapper.put(IImageConstants.IMAGE_SEARCH, createImage("icons/search.png"));
 		mapper.put(IImageConstants.IMAGE_CANCEL, createImage("icons/cancel.png"));
+		mapper.put(IImageConstants.IMAGE_ADD, createImage("icons/add.png"));
+		mapper.put(IImageConstants.IMAGE_REMOVE, createImage("icons/remove.png"));
+		mapper.put(IImageConstants.IMAGE_COPY, createImage("icons/copy.png"));
+		mapper.put(IImageConstants.IMAGE_PASTE, createImage("icons/paste.png"));
+		mapper.put(IImageConstants.IMAGE_RECORD, createImage("icons/record.png"));
+		mapper.put(IImageConstants.IMAGE_ROOT, createImage("icons/root.png"));
+		
 	}
 	
 	private Image createImage(String path)
@@ -37,7 +44,7 @@ public class ImageRegister
 		return new Image(display, ImageRegister.class.getClassLoader().getResourceAsStream(path));
 	}
 
-	public Image getImage(String key)
+	public Image getImage(int key)
 	{
 		return mapper.get(key);
 	}
