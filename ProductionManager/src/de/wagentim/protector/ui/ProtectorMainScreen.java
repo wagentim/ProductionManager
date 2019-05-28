@@ -8,30 +8,26 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
 
 import de.etas.tef.production.help.IActionListener;
-import de.etas.tef.production.help.IConstants;
 import de.wagentim.common.IImageConstants;
 import de.wagentim.common.ImageRegister;
-import de.wagentim.protector.common.ActionManager;
+import de.wagentim.protector.common.IProtectorConstants;
+import de.wagentim.protector.common.ProtectorActionManager;
 import de.wagentim.protector.controller.InfoBlockWriter;
 import de.wagentim.protector.controller.ProtectorController;
 
 public class ProtectorMainScreen extends Composite implements IActionListener
 {
 	private final ProtectorController controller;
-	private MenuItem showInfoPaneItem;
 	private StyledText txtInfoBlock;
 	private SashForm main;
-	private Label dateLabel;
 	private final ImageRegister imageRegister;
+	private ToolItem editToolItem;
+	private ToolItem loadToolItem;
 	
-	private static boolean isInfoPaneShow = false;
-
 	public ProtectorMainScreen(Composite parent, int style, final ImageRegister imageRegister)
 	{
 		super(parent, style);
@@ -41,7 +37,7 @@ public class ProtectorMainScreen extends Composite implements IActionListener
 		initMainScreen(this);
 		initMainComponents(this);
 		
-		ActionManager.INSTANCE.addActionListener(this);
+		ProtectorActionManager.INSTANCE.addActionListener(this);
 	}
 	
 	private void initMainComponents(Composite shell)
@@ -73,15 +69,40 @@ public class ProtectorMainScreen extends Composite implements IActionListener
 		shell.setLayout(layout);
 		
 		ToolBar bar = new ToolBar(shell, SWT.NONE);
-		ToolItem loadItem = new ToolItem(bar, SWT.PUSH);
-		loadItem.setImage(imageRegister.getImage(IImageConstants.IMAGE_LOAD_RECORD_ITEM));
-		loadItem.setText(IConstants.TXT_LOAD_RECORD_ITEM);
-		loadItem.addSelectionListener(new SelectionAdapter()
+		loadToolItem = new ToolItem(bar, SWT.PUSH);
+		loadToolItem.setImage(imageRegister.getImage(IImageConstants.IMAGE_LOAD_OUTLINE));
+		loadToolItem.setText(IProtectorConstants.TXT_LOAD_RECORD_ITEM);
+		loadToolItem.setHotImage(imageRegister.getImage(IImageConstants.IMAGE_LOAD_COLOR));
+		loadToolItem.addSelectionListener(new SelectionAdapter()
 		{
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
 				controller.loadAllData();
+			}
+		});
+		
+		new ToolItem(bar, SWT.SEPARATOR);
+		
+		editToolItem = new ToolItem(bar, SWT.PUSH);
+		editToolItem.setImage(imageRegister.getImage(IImageConstants.IMAGE_EDITABLE_OUTLINE));
+		editToolItem.setText(IProtectorConstants.TXT_EDITABLE);
+		editToolItem.setHotImage(imageRegister.getImage(IImageConstants.IMAGE_EDITABLE_COLOR));
+		editToolItem.addSelectionListener(new SelectionAdapter()
+		{
+			@Override
+			public void widgetSelected(SelectionEvent arg0)
+			{
+				controller.setEditingLocked();
+				
+				if(controller.isEditingLocked())
+				{
+					editToolItem.setImage(imageRegister.getImage(IImageConstants.IMAGE_EDITABLE_OUTLINE));			
+				}
+				else
+				{
+					editToolItem.setImage(imageRegister.getImage(IImageConstants.IMAGE_EDITABLE_COLOR));
+				}
 			}
 		});
 	}

@@ -11,8 +11,9 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 
-import de.etas.tef.production.help.IConstants;
-import de.wagentim.protector.common.ActionManager;
+import de.wagentim.common.IConstants;
+import de.wagentim.protector.common.ProtectorActionManager;
+import de.wagentim.protector.common.IProtectorActionType;
 import de.wagentim.protector.controller.ProtectorController;
 import de.wagentim.protector.entity.CellIndex;
 import de.wagentim.protector.entity.Record;
@@ -81,11 +82,11 @@ public class TreeListener extends CellEditingListener
 				Record cb = new Record(1, "");
 //				cb.setName(Constants.TXT_TEMP);
 				controller.addConfigBlock(cb);
-				ActionManager.INSTANCE.sendAction(IConstants.ACTION_ADD_NEW_BLOCK, cb);
+				ProtectorActionManager.INSTANCE.sendAction(IConstants.ACTION_ADD_NEW_BLOCK, cb);
 			}
 			else if( text.contentEquals(IConstants.TXT_BTN_DELETE) )
 			{
-				ActionManager.INSTANCE.sendAction(IConstants.ACTION_DELETE_BLOCK, getTree().getSelection()[0].getText());
+				ProtectorActionManager.INSTANCE.sendAction(IConstants.ACTION_DELETE_BLOCK, getTree().getSelection()[0].getText());
 			}
 			else if( text.contentEquals(IConstants.TXT_COPY) )
 			{
@@ -98,10 +99,8 @@ public class TreeListener extends CellEditingListener
 		}
 		else if(event.getSource() instanceof Tree)
 		{
-			String s = getSelectedTreeItem().getText();
-			controller.setFocusedElement(IConstants.FOCUS_BLOCK);
-			controller.setSelectedItem(s);
-			ActionManager.INSTANCE.sendAction(IConstants.ACTION_BLOCK_SELECTED, null);
+			Record record = (Record) getSelectedTreeItem().getData();
+			ProtectorActionManager.INSTANCE.sendAction(IProtectorActionType.ACTION_RECORD_SELECTED, record);
 		}
 	}
 	
@@ -113,12 +112,12 @@ public class TreeListener extends CellEditingListener
 	
 	private void sendCopyMessage()
 	{
-		ActionManager.INSTANCE.sendAction(IConstants.ACTION_COPY_BLOCK, null);
+		ProtectorActionManager.INSTANCE.sendAction(IConstants.ACTION_COPY_BLOCK, null);
 	}
 	
 	private void sendPasteMessage()
 	{
-		ActionManager.INSTANCE.sendAction(IConstants.ACTION_PASTE_BLOCK, null);
+		ProtectorActionManager.INSTANCE.sendAction(IConstants.ACTION_PASTE_BLOCK, null);
 	}
 
 	@Override

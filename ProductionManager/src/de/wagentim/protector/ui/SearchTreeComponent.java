@@ -1,5 +1,8 @@
 package de.wagentim.protector.ui;
 
+import java.util.Collection;
+import java.util.Iterator;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MenuAdapter;
 import org.eclipse.swt.events.MenuEvent;
@@ -13,11 +16,10 @@ import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 
-import de.etas.tef.production.help.IConstants;
+import de.wagentim.common.IConstants;
 import de.wagentim.common.IImageConstants;
 import de.wagentim.common.ImageRegister;
-import de.wagentim.common.ui.SearchComposite;
-import de.wagentim.protector.common.ActionManager;
+import de.wagentim.protector.common.IProtectorActionType;
 import de.wagentim.protector.controller.ProtectorController;
 import de.wagentim.protector.entity.Record;
 
@@ -113,49 +115,30 @@ public class SearchTreeComponent extends AbstractComposite
 	    });
 	}
 	
-	public void setItems(String[] itemList)
-	{
-		root.removeAll();
-		
-		for(int i = 0; i < itemList.length; i++)
-		{
-			String item = itemList[i];
-			
-			addTreeItem(item, root, -1);
-		}
-		
-		root.setExpanded(true);
-	}
-	
-	private void addTreeItem(String blockName, TreeItem parent, int index)
+	private void addTreeItem(Record record, TreeItem parent, int index)
 	{
 		TreeItem it;
 		
 		if( index < 0 )
 		{
 			it = new TreeItem(parent, SWT.NONE);
+			
 		}
 		else
 		{
 			it = new TreeItem(parent, SWT.NONE, index);
 		}
-		it.setText(blockName);
+		
+		it.setText(record.getName());
+		it.setData(record);
 		it.setImage(imageRegister.getImage(IImageConstants.IMAGE_RECORD));
 	}
 
 	
 	
-	public void setTreeSelectedBlock(String blockName)
+	public void setTreeSelectedRecord(int index)
 	{
-		TreeItem[] items = root.getItems();
-		
-		for( int i = 0 ; i < items.length; i++)
-		{
-			if( blockName.trim().equals(items[i].getText().trim()))
-			{
-				itemList.select(items[i]);
-			}
-		}
+		itemList.select(root.getItem(index));
 	}
 
 	public TableComposite getTableComposite()
@@ -187,23 +170,20 @@ public class SearchTreeComponent extends AbstractComposite
 	
 	public void receivedAction(int type, Object content)
 	{
-		if( IConstants.ACTION_LOAD_DATA == type)
+		if( IProtectorActionType.ACTION_DATA_LOADED == type)
 		{
-			String[] items = controller.getItemNames();
+			root.removeAll();
+
+			@SuppressWarnings("unchecked")
+			Collection<Record> records = (Collection<Record>) content;
 			
-			setItems(items);
-			
-			if(items.length > 0)
+			Iterator<Record> it = records.iterator();
+			while(it.hasNext())
 			{
-				String s = items[0];
-				setTreeSelectedBlock(s);
+				addTreeItem(it.next(), root, -1);
 			}
-			else
-			{
-			}
-			
-			ActionManager.INSTANCE.sendAction(IConstants.ACTION_LOG_WRITE_INFO, "Load Items: " + items.length);
-			
+
+			setTreeSelectedRecord(0);
 		}
 		
 	}

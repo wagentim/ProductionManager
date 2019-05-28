@@ -1,6 +1,7 @@
 package de.wagentim.protector.db;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -160,7 +161,7 @@ public class SqliteDBController implements IDBController
 		return Collections.emptyMap();
 	}
 	
-	public Map<Integer, Item> getAllItems()
+	public Map<Integer, List<Item>> getAllItems()
 	{
 		sb.delete(0, sb.length());
 		sb.append("SELECT * FROM item");
@@ -173,14 +174,24 @@ public class SqliteDBController implements IDBController
 			
 			if( !items.isEmpty() )
 			{
-				Map<Integer, Item> result = new HashMap<Integer, Item>();
+				Map<Integer, List<Item>> result = new HashMap<Integer, List<Item>>();
 				
 				Iterator<Item> it = items.iterator();
 				
 				while(it.hasNext())
 				{
 					Item i = it.next();
-					result.put(i.getBlockId(), i);
+					int recordID = i.getRecordId();
+					
+					List<Item> list = result.get(recordID);
+					
+					if( null == list )
+					{
+						list = new ArrayList<Item>();
+						result.put(recordID, list);
+					}
+					
+					list.add(i);
 				}
 				
 				return result;

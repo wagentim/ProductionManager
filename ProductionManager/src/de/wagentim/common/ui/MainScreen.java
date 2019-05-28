@@ -26,7 +26,7 @@ import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 
 import de.etas.tef.config.ui.core.ConfigEditorMainScreen;
-import de.etas.tef.production.help.IConstants;
+import de.wagentim.common.IConstants;
 import de.wagentim.common.IImageConstants;
 import de.wagentim.common.ImageRegister;
 import de.wagentim.protector.ui.ProtectorMainScreen;

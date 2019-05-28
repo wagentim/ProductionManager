@@ -21,7 +21,8 @@ public class ImageRegister
 	private void initImages()
 	{
 		mapper.put(IImageConstants.IMAGE_PASSWORD_TITLE, createImage("icons/title.png"));
-		mapper.put(IImageConstants.IMAGE_LOAD_RECORD_ITEM, createImage("icons/refresh.png"));
+		mapper.put(IImageConstants.IMAGE_LOAD_OUTLINE, createImage("icons/load_outline.png"));
+		mapper.put(IImageConstants.IMAGE_LOAD_COLOR, createImage("icons/load_color.png"));
 		mapper.put(IImageConstants.IMAGE_EXIT, createImage("icons/exit.png"));
 		mapper.put(IImageConstants.IMAGE_ABOUT, createImage("icons/about.png"));
 		mapper.put(IImageConstants.IMAGE_LOCK, createImage("icons/lock.png"));
@@ -36,6 +37,8 @@ public class ImageRegister
 		mapper.put(IImageConstants.IMAGE_PASTE, createImage("icons/paste.png"));
 		mapper.put(IImageConstants.IMAGE_RECORD, createImage("icons/record.png"));
 		mapper.put(IImageConstants.IMAGE_ROOT, createImage("icons/root.png"));
+		mapper.put(IImageConstants.IMAGE_EDITABLE_OUTLINE, createImage("icons/editable_outline.png"));
+		mapper.put(IImageConstants.IMAGE_EDITABLE_COLOR, createImage("icons/editable_color.png"));
 		
 	}
 	

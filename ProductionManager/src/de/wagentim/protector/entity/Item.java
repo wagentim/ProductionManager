@@ -2,7 +2,7 @@ package de.wagentim.protector.entity;
 
 import java.io.Serializable;
 
-import de.etas.tef.production.help.IConstants;
+import de.wagentim.common.IConstants;
 
 public class Item implements Serializable
 {
@@ -14,19 +14,19 @@ public class Item implements Serializable
 	
 	private String key = IConstants.EMPTY_STRING;
 	private String value = IConstants.EMPTY_STRING;
-	private final int blockId;
+	private final int recordId;
 	private final int itemId;
 	
 	public Item(final int blockId, final int itemId)
 	{
 		super();
-		this.blockId = blockId;
+		this.recordId = blockId;
 		this.itemId = itemId;
 	}
 	
-	public int getBlockId()
+	public int getRecordId()
 	{
-		return blockId;
+		return recordId;
 	}
 
 	public int getItemId()
@@ -39,7 +39,7 @@ public class Item implements Serializable
 		super();
 		this.key = key;
 		this.value = value;
-		this.blockId = blockId;
+		this.recordId = blockId;
 		this.itemId = itemId;
 	}
 
@@ -66,6 +66,6 @@ public class Item implements Serializable
 	@Override
 	public String toString()
 	{
-		return "KeyValuePair [key=" + key + ", value=" + value + ", blockId=" + blockId + ", itemId=" + itemId + "]";
+		return "KeyValuePair [key=" + key + ", value=" + value + ", blockId=" + recordId + ", itemId=" + itemId + "]";
 	}
 }

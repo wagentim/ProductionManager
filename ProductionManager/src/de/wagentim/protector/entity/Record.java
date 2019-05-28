@@ -2,7 +2,7 @@ package de.wagentim.protector.entity;
 
 import java.io.Serializable;
 
-import de.etas.tef.production.help.IConstants;
+import de.wagentim.common.IConstants;
 
 
 public class Record implements Serializable

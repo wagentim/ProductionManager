@@ -5,8 +5,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import de.etas.tef.production.help.IConstants;
-import de.wagentim.protector.common.ActionManager;
+import de.wagentim.common.IConstants;
+import de.wagentim.protector.common.ProtectorActionManager;
 import de.wagentim.protector.common.IProtectorActionType;
 import de.wagentim.protector.db.IDBController;
 import de.wagentim.protector.db.SqliteDBController;
@@ -21,7 +21,7 @@ public class ProtectorController
 	private boolean isEditingBlocked = true;
 	private String selectedItem = IConstants.EMPTY_STRING;
 	private Map<Integer, Record> records = Collections.emptyMap();
-	private Map<Integer, Item> items = Collections.emptyMap();
+	private Map<Integer, List<Item>> items = Collections.emptyMap();
 	
 	public ProtectorController()
 	{
@@ -32,7 +32,7 @@ public class ProtectorController
 	{
 		records = dbController.getAllRecords();
 		items = dbController.getAllItems();
-		ActionManager.INSTANCE.sendAction(IProtectorActionType.ACTION_DATA_LOADED, records.values());
+		ProtectorActionManager.INSTANCE.sendAction(IProtectorActionType.ACTION_DATA_LOADED, records.values());
 	}
 	
 	public String[] getItemNames()
@@ -62,11 +62,6 @@ public class ProtectorController
 	}
 	
 	public void setShowConfigBlocks(String text)
-	{
-		
-	}
-	
-	public void setFocusedElement(int element)
 	{
 		
 	}
@@ -170,6 +165,16 @@ public class ProtectorController
 	{
 		// TODO Auto-generated method stub
 		
+	}
+
+	public List<Item> getSelectedItems(Record record)
+	{
+		if( null == record )
+		{
+			return Collections.emptyList();
+		}
+		
+		return items.get(record.getId());
 	}
 	
 }

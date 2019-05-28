@@ -1,12 +1,10 @@
-package de.etas.tef.production.help;
+package de.wagentim.common;
 
 public interface IConstants
 {
-	// constants for the main window size
 	public static final int MAIN_SCREEN_WIDTH = 800;
 	public static final int MAIN_SCREEN_HEIGHT = 700;
 	
-	// constants for configure file
 	public static final String CONFIG_DEFAULT_LOCATION = ".";
 	public static final String CONFIG_DEFAULT_NAME = "";
 	
@@ -57,7 +55,6 @@ public interface IConstants
 	public static final String TXT_PASTE = "Paste";
 	public static final String TXT_FOLDER_PASSWORD_PROTECTOR = "Password";
 	public static final String TXT_RECORD = "Records";
-	public static final String TXT_LOAD_RECORD_ITEM = "Load";
 	
 	public static final int ACTION_NEW_FILE_SELECTED = 0x00;
 	public static final int ACTION_LOG_WRITE_INFO = 0x01;

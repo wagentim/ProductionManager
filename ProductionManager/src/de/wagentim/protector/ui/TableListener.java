@@ -15,8 +15,9 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 
-import de.etas.tef.production.help.IConstants;
-import de.wagentim.protector.common.ActionManager;
+import de.wagentim.common.IConstants;
+import de.wagentim.protector.common.ProtectorActionManager;
+import de.wagentim.protector.common.IProtectorConstants;
 import de.wagentim.protector.controller.ProtectorController;
 import de.wagentim.protector.entity.CellIndex;
 
@@ -137,11 +138,11 @@ public class TableListener extends CellEditingListener
 			
 			if( text.contentEquals(IConstants.TXT_BTN_ADD) )
 			{
-				ActionManager.INSTANCE.sendAction(IConstants.ACTION_MENU_ADD, IConstants.EMPTY_STRING);
+				ProtectorActionManager.INSTANCE.sendAction(IConstants.ACTION_MENU_ADD, IConstants.EMPTY_STRING);
 			}
 			else if( text.contentEquals(IConstants.TXT_BTN_DELETE) )
 			{
-				ActionManager.INSTANCE.sendAction(IConstants.ACTION_MENU_DELETE, IConstants.EMPTY_STRING);
+				ProtectorActionManager.INSTANCE.sendAction(IConstants.ACTION_MENU_DELETE, IConstants.EMPTY_STRING);
 			}
 			else if( text.contentEquals(IConstants.TXT_COPY) )
 			{
@@ -157,12 +158,12 @@ public class TableListener extends CellEditingListener
 	
 	private void sendCopyMessage()
 	{
-		ActionManager.INSTANCE.sendAction(IConstants.ACTION_COPY_PARAMETER, null);
+		ProtectorActionManager.INSTANCE.sendAction(IConstants.ACTION_COPY_PARAMETER, null);
 	}
 	
 	private void sendPasteMessage()
 	{
-		ActionManager.INSTANCE.sendAction(IConstants.ACTION_PASTE_PARAMETER, null);
+		ProtectorActionManager.INSTANCE.sendAction(IConstants.ACTION_PASTE_PARAMETER, null);
 	}
 
 	@Override

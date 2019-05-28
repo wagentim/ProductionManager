@@ -4,7 +4,7 @@ import org.eclipse.swt.widgets.Composite;
 
 import de.etas.tef.production.help.IActionListener;
 import de.wagentim.common.ImageRegister;
-import de.wagentim.protector.common.ActionManager;
+import de.wagentim.protector.common.ProtectorActionManager;
 import de.wagentim.protector.controller.ProtectorController;
 
 public abstract class AbstractComposite extends Composite implements IActionListener
@@ -18,7 +18,7 @@ public abstract class AbstractComposite extends Composite implements IActionList
 		super(parent, style);
 		this.controller = controller;
 		this.imageRegister = imageRegister;
-		ActionManager.INSTANCE.addActionListener(this);
+		ProtectorActionManager.INSTANCE.addActionListener(this);
 	}
 	
 	public void receivedAction(int type, Object content){}

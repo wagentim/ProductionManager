@@ -7,8 +7,9 @@ import org.eclipse.swt.custom.StyleRange;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.graphics.Color;
 
-import de.etas.tef.production.help.IConstants;
-import de.wagentim.protector.common.ActionManager;
+import de.wagentim.common.IConstants;
+import de.wagentim.protector.common.IProtectorActionType;
+import de.wagentim.protector.common.ProtectorActionManager;
 import de.etas.tef.production.help.IActionListener;
 
 public class InfoBlockWriter implements IActionListener
@@ -30,7 +31,7 @@ public class InfoBlockWriter implements IActionListener
 		this.error = infoBlock.getDisplay().getSystemColor(SWT.COLOR_RED);
 		this.info = infoBlock.getDisplay().getSystemColor(SWT.COLOR_BLACK);
 		this.warning = infoBlock.getDisplay().getSystemColor(SWT.COLOR_BLUE);
-		ActionManager.INSTANCE.addActionListener(this);
+		ProtectorActionManager.INSTANCE.addActionListener(this);
 	}
 	
 	private void moveToLastLine()
@@ -84,15 +85,15 @@ public class InfoBlockWriter implements IActionListener
 	@Override
 	public void receivedAction(int type, Object content)
 	{
-		if ((type == IConstants.ACTION_LOG_WRITE_INFO))
+		if ((type == IProtectorActionType.ACTION_LOG_WRITE_INFO))
 		{
 			logInfo(content.toString());
 		} 
-		else if (type == IConstants.ACTION_LOG_WRITE_ERROR)
+		else if (type == IProtectorActionType.ACTION_LOG_WRITE_ERROR)
 		{
 			logError(content.toString());
 		}
-		else if (type == IConstants.ACTION_LOG_WRITE_WARNING)
+		else if (type == IProtectorActionType.ACTION_LOG_WRITE_WARNING)
 		{
 			logWarning(content.toString());
 		}

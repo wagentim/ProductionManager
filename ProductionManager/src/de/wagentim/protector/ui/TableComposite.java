@@ -4,6 +4,8 @@ package de.wagentim.protector.ui;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
@@ -27,11 +29,12 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 
-import de.etas.tef.config.entity.KeyValuePair;
-import de.etas.tef.production.help.IConstants;
+import de.wagentim.common.IConstants;
 import de.wagentim.common.ImageRegister;
-import de.wagentim.protector.common.ActionManager;
+import de.wagentim.protector.common.ProtectorActionManager;
+import de.wagentim.protector.common.IProtectorActionType;
 import de.wagentim.protector.controller.ProtectorController;
+import de.wagentim.protector.entity.Item;
 import de.wagentim.protector.entity.Record;
 
 public class TableComposite extends AbstractComposite
@@ -90,7 +93,7 @@ public class TableComposite extends AbstractComposite
 		
 		table = new Table(tableComposite, SWT.MULTI | SWT.BORDER | SWT.FULL_SELECTION);
 		table.setLinesVisible(true);
-		table.setHeaderVisible(false);
+		table.setHeaderVisible(true);
 		
 		gd = new GridData(GridData.FILL_BOTH);
 		gd.heightHint = IConstants.HEIGHT_HINT;
@@ -133,12 +136,11 @@ public class TableComposite extends AbstractComposite
 			@Override
 			public void widgetSelected(SelectionEvent event)
 			{
-				controller.setFocusedElement(IConstants.FOCUS_PARAMETER);
-				ActionManager.INSTANCE.sendAction(IConstants.ACTION_PARAMETER_SELECTED, getTable().getSelectionIndex());
+				ProtectorActionManager.INSTANCE.sendAction(IConstants.ACTION_PARAMETER_SELECTED, getTable().getSelectionIndex());
 
 				String text = getTable().getItem(getTable().getSelectionIndex()).getText(1);
 					
-				ActionManager.INSTANCE.sendAction(IConstants.ACTION_SOURCE_PARAMETER_SELECTED, text);
+				ProtectorActionManager.INSTANCE.sendAction(IConstants.ACTION_SOURCE_PARAMETER_SELECTED, text);
 			}
 			
 		});
@@ -146,12 +148,12 @@ public class TableComposite extends AbstractComposite
 
 	protected void setTreeSelectedBlock(String blockName)
 	{
-		searchTree.setTreeSelectedBlock(blockName);
+//		searchTree.setTreeSelectedBlock(blockName);
 	}
 	
 	protected void setBlockList(String[] blockList)
 	{
-		searchTree.setItems(blockList);
+//		searchTree.setItems(blockList);
 	}
 	
 	private void createRightMenu(Control control, SelectionListener listener)
@@ -221,34 +223,31 @@ public class TableComposite extends AbstractComposite
 	}
 
 
-	public void updateParameters(Record entity)
+	public void updateParameters(List<Item> items)
 	{
 		clearTable();
 
-		if( null == table || null == entity )
+		if( null == table || null == items || items.isEmpty() )
 		{
 			return;
 		}
 		
-//		KeyValuePair pair = new KeyValuePair("Name", entity.getName());
-//		addTableItem(pair);
-//		pair = new KeyValuePair("Content", entity.getContent());
-//		addTableItem(pair);
-//		pair = new KeyValuePair("Link", entity.getLink());
-//		addTableItem(pair);
-//		pair = new KeyValuePair("Use Name", entity.getUname());
-//		addTableItem(pair);
-//		pair = new KeyValuePair("Password", entity.getPassword());
-//		addTableItem(pair);
+		Iterator<Item> it = items.iterator();
 		
-		resize();
+		while(it.hasNext())
+		{
+			addTableItem(it.next());
+		}
+		
+//		resize();
 	}
 	
-	private void addTableItem(KeyValuePair pair)
+	private void addTableItem(Item item)
 	{
 		TableItem ti = new TableItem(table, SWT.NONE);
-		ti.setText(0, pair.getKey());
-		ti.setText(1, pair.getValue());
+		ti.setText(0, item.getKey());
+		ti.setText(1, item.getValue());
+		ti.setData(item);
 		ti.setBackground(tableBackgroudColor);
 	}
 	
@@ -330,18 +329,18 @@ public class TableComposite extends AbstractComposite
 	protected void saveAction(String targetFilePath)
 	{
 		controller.saveFile(targetFilePath);
-		ActionManager.INSTANCE.sendAction(IConstants.ACTION_LOG_WRITE_INFO, "Source Write to: " + targetFilePath + " finished!");
+		ProtectorActionManager.INSTANCE.sendAction(IConstants.ACTION_LOG_WRITE_INFO, "Source Write to: " + targetFilePath + " finished!");
 	}
 	
 	@Override
 	public void receivedAction(int type, Object content)
 	{
-		if( type == IConstants.ACTION_BLOCK_SELECTED )
+		if( type == IProtectorActionType.ACTION_RECORD_SELECTED )
 		{
-			updateParameters(controller.getSelectedItem());
+			updateParameters(controller.getSelectedItems((Record)content));
 		}
 
-		if( type == IConstants.ACTION_LOAD_DATA )
+		if( type == IProtectorActionType.ACTION_DATA_LOADED )
 		{
 			updateParameters(null);
 		}

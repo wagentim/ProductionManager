@@ -5,12 +5,12 @@ import java.util.List;
 
 import de.etas.tef.production.help.IActionListener;
 
-public class ActionManager
+public class ProtectorActionManager
 {
-	public static ActionManager INSTANCE = new ActionManager();
+	public static ProtectorActionManager INSTANCE = new ProtectorActionManager();
 	private List<IActionListener> listenerList = null;
 	
-	public ActionManager()
+	public ProtectorActionManager()
 	{
 		listenerList = new ArrayList<IActionListener>();
 	}

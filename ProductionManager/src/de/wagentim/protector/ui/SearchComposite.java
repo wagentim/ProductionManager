@@ -1,4 +1,4 @@
-package de.wagentim.common.ui;
+package de.wagentim.protector.ui;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
@@ -12,12 +12,12 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
-import de.etas.tef.production.help.IConstants;
+import de.wagentim.common.IConstants;
 import de.wagentim.common.IImageConstants;
 import de.wagentim.common.ImageRegister;
-import de.wagentim.protector.common.ActionManager;
+import de.wagentim.protector.common.ProtectorActionManager;
+import de.wagentim.protector.common.IProtectorConstants;
 import de.wagentim.protector.controller.ProtectorController;
-import de.wagentim.protector.ui.AbstractComposite;
 
 public class SearchComposite extends AbstractComposite
 {
@@ -72,7 +72,7 @@ public class SearchComposite extends AbstractComposite
 					cancelImage.setVisible(false);
 				}
 				
-				ActionManager.INSTANCE.sendAction(IConstants.ACTION_SET_SHOW_CONFIG_BLOCKS, text);
+				ProtectorActionManager.INSTANCE.sendAction(IConstants.ACTION_SET_SHOW_CONFIG_BLOCKS, text);
 			}
 		});
 		
