@@ -12,7 +12,7 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 
 import de.etas.tef.production.help.ActionManager;
-import de.etas.tef.production.help.Constants;
+import de.etas.tef.production.help.IConstants;
 import de.wagentim.protector.controller.MainController;
 import de.wagentim.protector.entity.CellIndex;
 import de.wagentim.protector.entity.Record;
@@ -76,22 +76,22 @@ public class TreeListener extends CellEditingListener
 		{
 			String text = ((MenuItem)event.getSource()).getText();
 			
-			if( text.contentEquals(Constants.TXT_BTN_ADD) )
+			if( text.contentEquals(IConstants.TXT_BTN_ADD) )
 			{
 				Record cb = new Record(1, "");
 //				cb.setName(Constants.TXT_TEMP);
 				controller.addConfigBlock(cb);
-				ActionManager.INSTANCE.sendAction(Constants.ACTION_ADD_NEW_BLOCK, cb);
+				ActionManager.INSTANCE.sendAction(IConstants.ACTION_ADD_NEW_BLOCK, cb);
 			}
-			else if( text.contentEquals(Constants.TXT_BTN_DELETE) )
+			else if( text.contentEquals(IConstants.TXT_BTN_DELETE) )
 			{
-				ActionManager.INSTANCE.sendAction(Constants.ACTION_DELETE_BLOCK, getTree().getSelection()[0].getText());
+				ActionManager.INSTANCE.sendAction(IConstants.ACTION_DELETE_BLOCK, getTree().getSelection()[0].getText());
 			}
-			else if( text.contentEquals(Constants.TXT_COPY) )
+			else if( text.contentEquals(IConstants.TXT_COPY) )
 			{
 				sendCopyMessage();
 			}
-			else if( text.contentEquals(Constants.TXT_PASTE) )
+			else if( text.contentEquals(IConstants.TXT_PASTE) )
 			{
 				sendPasteMessage();
 			}
@@ -99,9 +99,9 @@ public class TreeListener extends CellEditingListener
 		else if(event.getSource() instanceof Tree)
 		{
 			String s = getSelectedTreeItem().getText();
-			controller.setFocusedElement(Constants.FOCUS_BLOCK);
+			controller.setFocusedElement(IConstants.FOCUS_BLOCK);
 			controller.setSelectedItem(s);
-			ActionManager.INSTANCE.sendAction(Constants.ACTION_BLOCK_SELECTED, null);
+			ActionManager.INSTANCE.sendAction(IConstants.ACTION_BLOCK_SELECTED, null);
 		}
 	}
 	
@@ -113,12 +113,12 @@ public class TreeListener extends CellEditingListener
 	
 	private void sendCopyMessage()
 	{
-		ActionManager.INSTANCE.sendAction(Constants.ACTION_COPY_BLOCK, null);
+		ActionManager.INSTANCE.sendAction(IConstants.ACTION_COPY_BLOCK, null);
 	}
 	
 	private void sendPasteMessage()
 	{
-		ActionManager.INSTANCE.sendAction(Constants.ACTION_PASTE_BLOCK, null);
+		ActionManager.INSTANCE.sendAction(IConstants.ACTION_PASTE_BLOCK, null);
 	}
 
 	@Override

@@ -29,7 +29,8 @@ import org.eclipse.swt.widgets.TableItem;
 
 import de.etas.tef.config.entity.KeyValuePair;
 import de.etas.tef.production.help.ActionManager;
-import de.etas.tef.production.help.Constants;
+import de.etas.tef.production.help.IConstants;
+import de.etas.tef.production.help.ImageRegister;
 import de.wagentim.protector.controller.MainController;
 import de.wagentim.protector.entity.Record;
 
@@ -50,9 +51,9 @@ public class TableComposite extends AbstractComposite
 	
 	private SearchTreeComponent searchTree;
 	
-	public TableComposite(Composite parent, int style, MainController controller)
+	public TableComposite(Composite parent, int style, MainController controller, ImageRegister imageRegister)
 	{
-		super(parent, style, controller);
+		super(parent, style, controller, imageRegister);
 
 		this.setLayout(new GridLayout(2, false));
 		this.setLayoutData(new GridData(GridData.FILL_BOTH));
@@ -78,7 +79,7 @@ public class TableComposite extends AbstractComposite
 		GridData gd = new GridData(GridData.FILL_BOTH);
 		sf.setLayoutData(gd);
 		
-		searchTree = new SearchTreeComponent(sf, SWT.NONE, controller);
+		searchTree = new SearchTreeComponent(sf, SWT.NONE, controller, imageRegister);
 		searchTree.setTableComposite(this);
 		
 		Composite tableComposite = new Composite(sf, SWT.NONE);
@@ -92,7 +93,7 @@ public class TableComposite extends AbstractComposite
 		table.setHeaderVisible(false);
 		
 		gd = new GridData(GridData.FILL_BOTH);
-		gd.heightHint = Constants.HEIGHT_HINT;
+		gd.heightHint = IConstants.HEIGHT_HINT;
 		table.setLayoutData(gd);
 		
 		TableListener tl = new TableListener(getTable(), controller);
@@ -132,12 +133,12 @@ public class TableComposite extends AbstractComposite
 			@Override
 			public void widgetSelected(SelectionEvent event)
 			{
-				controller.setFocusedElement(Constants.FOCUS_PARAMETER);
-				ActionManager.INSTANCE.sendAction(Constants.ACTION_PARAMETER_SELECTED, getTable().getSelectionIndex());
+				controller.setFocusedElement(IConstants.FOCUS_PARAMETER);
+				ActionManager.INSTANCE.sendAction(IConstants.ACTION_PARAMETER_SELECTED, getTable().getSelectionIndex());
 
 				String text = getTable().getItem(getTable().getSelectionIndex()).getText(1);
 					
-				ActionManager.INSTANCE.sendAction(Constants.ACTION_SOURCE_PARAMETER_SELECTED, text);
+				ActionManager.INSTANCE.sendAction(IConstants.ACTION_SOURCE_PARAMETER_SELECTED, text);
 			}
 			
 		});
@@ -175,24 +176,24 @@ public class TableComposite extends AbstractComposite
 	            }
 	            
 	            MenuItem copyItem = new MenuItem(rightClickMenu, SWT.NONE);
-	            copyItem.setText(Constants.TXT_COPY);
+	            copyItem.setText(IConstants.TXT_COPY);
 	            copyItem.setImage(IMAGE_COPY);
 	            copyItem.addSelectionListener(listener);
 	            
 	            MenuItem pasteItem = new MenuItem(rightClickMenu, SWT.NONE);
-	            pasteItem.setText(Constants.TXT_PASTE);
+	            pasteItem.setText(IConstants.TXT_PASTE);
 	            pasteItem.setImage(IMAGE_PASTE);
 	            pasteItem.addSelectionListener(listener);
 	            
 	            new MenuItem(rightClickMenu, SWT.SEPARATOR);
 	            
 	            MenuItem newItem = new MenuItem(rightClickMenu, SWT.NONE);
-	            newItem.setText(Constants.TXT_BTN_ADD);
+	            newItem.setText(IConstants.TXT_BTN_ADD);
 	            newItem.setImage(IMAGE_ADD);
 	            newItem.addSelectionListener(listener);
 	            
 	            MenuItem deleteItem = new MenuItem(rightClickMenu, SWT.NONE);
-	            deleteItem.setText(Constants.TXT_BTN_DELETE);
+	            deleteItem.setText(IConstants.TXT_BTN_DELETE);
 	            deleteItem.setImage(IMAGE_REMOVE);
 	            deleteItem.addSelectionListener(listener);
 	        }
@@ -290,8 +291,8 @@ public class TableComposite extends AbstractComposite
 	protected String fileSave(Shell shell)
 	{
 		FileDialog fd = new FileDialog(shell, SWT.APPLICATION_MODAL | SWT.SAVE);
-		fd.setFilterExtensions(Constants.CONFIG_FILE_EXTENSION);
-		fd.setFilterNames(Constants.CONFIG_FILE_NAME);
+		fd.setFilterExtensions(IConstants.CONFIG_FILE_EXTENSION);
+		fd.setFilterNames(IConstants.CONFIG_FILE_NAME);
 		String result = fd.open();
 		if( null != result )
 		{
@@ -329,18 +330,18 @@ public class TableComposite extends AbstractComposite
 	protected void saveAction(String targetFilePath)
 	{
 		controller.saveFile(targetFilePath);
-		ActionManager.INSTANCE.sendAction(Constants.ACTION_LOG_WRITE_INFO, "Source Write to: " + targetFilePath + " finished!");
+		ActionManager.INSTANCE.sendAction(IConstants.ACTION_LOG_WRITE_INFO, "Source Write to: " + targetFilePath + " finished!");
 	}
 	
 	@Override
 	public void receivedAction(int type, Object content)
 	{
-		if( type == Constants.ACTION_BLOCK_SELECTED )
+		if( type == IConstants.ACTION_BLOCK_SELECTED )
 		{
 			updateParameters(controller.getSelectedItem());
 		}
 
-		if( type == Constants.ACTION_LOAD_DATA )
+		if( type == IConstants.ACTION_LOAD_DATA )
 		{
 			updateParameters(null);
 		}

@@ -1,13 +1,10 @@
 package de.wagentim.protector.ui;
 
-import java.text.SimpleDateFormat;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -18,6 +15,9 @@ import org.eclipse.swt.widgets.ToolItem;
 
 import de.etas.tef.production.help.ActionManager;
 import de.etas.tef.production.help.IActionListener;
+import de.etas.tef.production.help.IConstants;
+import de.etas.tef.production.help.IImageConstants;
+import de.etas.tef.production.help.ImageRegister;
 import de.wagentim.protector.controller.InfoBlockWriter;
 import de.wagentim.protector.controller.MainController;
 
@@ -28,39 +28,20 @@ public class ProtectorMainScreen extends Composite implements IActionListener
 	private StyledText txtInfoBlock;
 	private SashForm main;
 	private Label dateLabel;
-	
-	public final Image IMAGE_TITLE;
-	public final Image IMAGE_PIN;
-	public final Image IMAGE_EXIT;
-	public final Image IMAGE_ABOUT;
-	public final Image IMAGE_LOCK;
-	public final Image IMAGE_UNLOCK;
-	public final Image IMAGE_TIME;
-	public final Image IMAGE_LOAD;
+	private final ImageRegister imageRegister;
 	
 	private static boolean isInfoPaneShow = false;
-	
-	private static final SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
 
-	public ProtectorMainScreen(Composite parent, int style)
+	public ProtectorMainScreen(Composite parent, int style, final ImageRegister imageRegister)
 	{
 		super(parent, style);
+		this.imageRegister = imageRegister;
 		
 		controller = new MainController();
-		ActionManager.INSTANCE.addActionListener(this);
-		
-		IMAGE_TITLE = new Image(this.getDisplay(), "icons/title.png");
-		IMAGE_PIN = new Image(this.getDisplay(), "icons/pin.png");
-		IMAGE_EXIT = new Image(this.getDisplay(), "icons/exit.png");
-		IMAGE_ABOUT = new Image(this.getDisplay(), "icons/about.png");
-		IMAGE_LOCK = new Image(this.getDisplay(), "icons/lock.png");
-		IMAGE_UNLOCK = new Image(this.getDisplay(), "icons/unlock.png");
-		IMAGE_TIME = new Image(this.getDisplay(), "icons/time.png");
-		IMAGE_LOAD = new Image(this.getDisplay(), "icons/load.png");
-		
-		
 		initMainScreen(this);
 		initMainComponents(this);
+		
+		ActionManager.INSTANCE.addActionListener(this);
 	}
 	
 	private void initMainComponents(Composite shell)
@@ -69,7 +50,7 @@ public class ProtectorMainScreen extends Composite implements IActionListener
 		GridData gd = new GridData(GridData.FILL_BOTH);
 		main.setLayoutData(gd);
 
-		new MainComposite(main, SWT.BORDER, controller);
+		new ContentComposite(main, SWT.BORDER, controller, imageRegister);
 		
 		txtInfoBlock = new StyledText(main, SWT.MULTI | SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL);
 		gd = new GridData(GridData.FILL_BOTH);
@@ -92,14 +73,14 @@ public class ProtectorMainScreen extends Composite implements IActionListener
 		shell.setLayout(layout);
 		
 		ToolBar bar = new ToolBar(shell, SWT.NONE);
-		ToolItem lockItem = new ToolItem(bar, SWT.PUSH);
-		lockItem.setText("Lock");
-		lockItem.addSelectionListener(new SelectionAdapter()
+		ToolItem loadItem = new ToolItem(bar, SWT.PUSH);
+		loadItem.setImage(imageRegister.getImage(IImageConstants.IMAGE_LOAD_RECORD_ITEM));
+		loadItem.setText(IConstants.TXT_LOAD_RECORD_ITEM);
+		loadItem.addSelectionListener(new SelectionAdapter()
 		{
 			@Override
 			public void widgetSelected(SelectionEvent arg0)
 			{
-				// TODO Auto-generated method stub
 
 			}
 		});

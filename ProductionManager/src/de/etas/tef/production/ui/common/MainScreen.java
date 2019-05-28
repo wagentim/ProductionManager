@@ -1,4 +1,4 @@
-package de.etas.tef.production.ui;
+package de.etas.tef.production.ui.common;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -26,8 +26,8 @@ import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 
 import de.etas.tef.config.ui.core.ConfigEditorMainScreen;
-import de.etas.tef.production.help.Constants;
-import de.etas.tef.production.help.ImageConstants;
+import de.etas.tef.production.help.IConstants;
+import de.etas.tef.production.help.IImageConstants;
 import de.etas.tef.production.help.ImageRegister;
 import de.wagentim.protector.ui.ProtectorMainScreen;
 
@@ -113,22 +113,12 @@ public class MainScreen
 		item.setControl (configEditor);
 		
 		item = new TabItem (tabFolder, SWT.NONE);
-		item.setText ("Protector Editor");
-		item.setImage(imageRegister.getImage(ImageConstants.IMAGE_TITLE));
-		ProtectorMainScreen protectorEditor = new ProtectorMainScreen (tabFolder, SWT.NONE);
+		item.setText (IConstants.TXT_FOLDER_PASSWORD_PROTECTOR);
+		item.setImage(imageRegister.getImage(IImageConstants.IMAGE_PASSWORD_TITLE));
+		ProtectorMainScreen protectorEditor = new ProtectorMainScreen (tabFolder, SWT.NONE, imageRegister);
 		item.setControl (protectorEditor);
 		
 		tabFolder.setSelection(1);
-		
-//		for (int i=0; i<6; i++) {
-//			TabItem item = new TabItem (tabFolder, SWT.NONE);
-//			item.setText ("TabItem " + i);
-//			Button button = new Button (tabFolder, SWT.PUSH);
-//			button.setText ("Page " + i);
-//			item.setControl (button);
-//		}
-//		tabFolder.pack ();
-		
 	}
 
 	private void initMainScreen(Composite shell)
@@ -136,9 +126,9 @@ public class MainScreen
 		Monitor primary = shell.getDisplay().getPrimaryMonitor();
 		Rectangle area = primary.getClientArea();
 		shell.pack();
-		shell.setBounds((Math.abs(area.width - Constants.MAIN_SCREEN_WIDTH)) / 2,
-				Math.abs((area.height - Constants.MAIN_SCREEN_HEIGHT)) / 2, Constants.MAIN_SCREEN_WIDTH,
-				Constants.MAIN_SCREEN_HEIGHT);
+		shell.setBounds((Math.abs(area.width - IConstants.MAIN_SCREEN_WIDTH)) / 2,
+				Math.abs((area.height - IConstants.MAIN_SCREEN_HEIGHT)) / 2, IConstants.MAIN_SCREEN_WIDTH,
+				IConstants.MAIN_SCREEN_HEIGHT);
 
 		GridLayout layout = new GridLayout(1, false);
 		layout.marginTop = 0;
@@ -185,104 +175,11 @@ public class MainScreen
 	    Menu functionMenu = new Menu(shell, SWT.DROP_DOWN);
 	    functionMenuHeader.setMenu(functionMenu);
 	    
-//	    connectItem = new MenuItem(functionMenu, SWT.PUSH);
-//	    connectItem.setText("&Disconnect");
-//	    connectItem.setImage(IMAGE_DISCONNECT);
-//	    connectItem.addSelectionListener(new SelectionListener()
-//		{
-//			
-//			@Override
-//			public void widgetSelected(SelectionEvent arg0)
-//			{
-//				isConnected = !isConnected;
-//				checkOptionSelection(fromConnect);
-//				connectItem.setText(isConnected ? "Connet" : "Disconnect");
-//				controller.setConnected(isConnected);
-//			}
-//			
-//			@Override
-//			public void widgetDefaultSelected(SelectionEvent arg0)
-//			{
-//				// TODO Auto-generated method stub
-//				
-//			}
-//		});
-	    
 	    MenuItem windowMenuHeader = new MenuItem(menuBar, SWT.CASCADE);
 	    windowMenuHeader.setText("Window");
 	    
 	    Menu windowMenu = new Menu(shell, SWT.DROP_DOWN);
 	    windowMenuHeader.setMenu(windowMenu);
-	    
-//	    leftPaneItem = new MenuItem(windowMenu, SWT.PUSH);
-//	    leftPaneItem.setText("Show/Hide Left Pane");
-//	    leftPaneItem.setImage(IMAGE_PIN);
-//	    leftPaneItem.addSelectionListener(new SelectionListener()
-//		{
-//			
-//			@Override
-//			public void widgetSelected(SelectionEvent arg0)
-//			{
-//				isLeftSelected = !isLeftSelected;
-//				checkOptionSelection(fromLeft);
-//			}
-//			
-//			@Override
-//			public void widgetDefaultSelected(SelectionEvent arg0)
-//			{
-//				// TODO Auto-generated method stub
-//				
-//			}
-//		});
-//	    
-//	    rightPaneItem = new MenuItem(windowMenu, SWT.PUSH);
-//	    rightPaneItem.setText("Show/Hide Right Pane");
-//	    rightPaneItem.addSelectionListener(new SelectionListener()
-//		{
-//			
-//			@Override
-//			public void widgetSelected(SelectionEvent arg0)
-//			{
-//				isRightSelected = !isRightSelected;
-//				checkOptionSelection(fromRight);
-//			}
-//			
-//			@Override
-//			public void widgetDefaultSelected(SelectionEvent arg0)
-//			{
-//				// TODO Auto-generated method stub
-//				
-//			}
-//		});
-//	    
-//	    showInfoPaneItem = new MenuItem(windowMenu, SWT.PUSH);
-//	    showInfoPaneItem.setText("&Show/Hide Info Pane");
-//	    showInfoPaneItem.setImage(IMAGE_ABOUT);
-//	    showInfoPaneItem.addSelectionListener(new SelectionListener()
-//		{
-//			
-//			@Override
-//			public void widgetSelected(SelectionEvent event)
-//			{
-//				isInfoPaneShow = !isInfoPaneShow;
-//				txtInfoBlock.setVisible(isInfoPaneShow);
-//				if(isInfoPaneShow)
-//				{
-//					main.setWeights(new int[]{5, 1});
-//				}
-//				else
-//				{
-//					main.setWeights(new int[]{1, 0});
-//				}
-//			}
-//			
-//			@Override
-//			public void widgetDefaultSelected(SelectionEvent arg0)
-//			{
-//				// TODO Auto-generated method stub
-//				
-//			}
-//		});
 	    
 	    MenuItem aboutMenuHeader = new MenuItem(menuBar, SWT.CASCADE);
 	    aboutMenuHeader.setText("&?");

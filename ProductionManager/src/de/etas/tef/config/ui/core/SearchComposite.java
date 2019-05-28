@@ -31,7 +31,7 @@ public class SearchComposite extends AbstractComposite
 		
 		GridLayout layout = new GridLayout(2, false);
 		layout.marginTop = layout.marginBottom = layout.marginLeft = layout.marginRight = 0; 
-		layout.marginHeight = layout.marginWidth = 0;
+		layout.marginHeight = layout.marginWidth = 3;
 		GridData gd = new GridData(GridData.FILL_HORIZONTAL);
 		gd.minimumHeight = 30;
 		this.setLayout(layout);

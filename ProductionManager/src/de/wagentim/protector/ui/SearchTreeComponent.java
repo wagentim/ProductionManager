@@ -15,7 +15,9 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 
 import de.etas.tef.production.help.ActionManager;
-import de.etas.tef.production.help.Constants;
+import de.etas.tef.production.help.IConstants;
+import de.etas.tef.production.help.ImageRegister;
+import de.etas.tef.production.ui.common.SearchComposite;
 import de.wagentim.protector.controller.MainController;
 import de.wagentim.protector.entity.Record;
 
@@ -36,9 +38,9 @@ public class SearchTreeComponent extends AbstractComposite
 	public final Image IMAGE_BLOCK;
 	public final Image IMAGE_ROOT;
 	
-	public SearchTreeComponent(Composite parent, int style, MainController controller)
+	public SearchTreeComponent(Composite parent, int style, MainController controller, ImageRegister imageRegister)
 	{
-		super(parent, style, controller);
+		super(parent, style, controller, imageRegister);
 		
 		GridLayout layout = new GridLayout(1, false);
 		layout.marginTop = layout.marginBottom = layout.marginLeft = layout.marginRight = 0; 
@@ -57,15 +59,15 @@ public class SearchTreeComponent extends AbstractComposite
 
 	protected void initComponent(MainController controller)
 	{
-		new SearchComposite(this, SWT.BORDER, controller);
+		new SearchComposite(this, SWT.BORDER, controller, imageRegister);
 		
 		itemList = new Tree(this, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL);
 		GridData gd = new GridData(GridData.FILL_BOTH);
-		gd.heightHint = Constants.HEIGHT_HINT;
+		gd.heightHint = IConstants.HEIGHT_HINT;
 		itemList.setLayoutData(gd);
 		
 		root = new TreeItem(itemList, SWT.NONE);
-		root.setText(Constants.TXT_CONFIG_FILE);
+		root.setText(IConstants.TXT_RECORD);
 		root.setImage(IMAGE_ROOT);
 		
 		tl = new TreeListener(itemList, controller);
@@ -99,24 +101,24 @@ public class SearchTreeComponent extends AbstractComposite
 	            }
 	            
 	            MenuItem copyItem = new MenuItem(rightClickMenu, SWT.NONE);
-	            copyItem.setText(Constants.TXT_COPY);
+	            copyItem.setText(IConstants.TXT_COPY);
 	            copyItem.setImage(IMAGE_COPY);
 	            copyItem.addSelectionListener(listener);
 	            
 	            MenuItem pasteItem = new MenuItem(rightClickMenu, SWT.NONE);
-	            pasteItem.setText(Constants.TXT_PASTE);
+	            pasteItem.setText(IConstants.TXT_PASTE);
 	            pasteItem.setImage(IMAGE_PASTE);
 	            pasteItem.addSelectionListener(listener);
 	            
 	            new MenuItem(rightClickMenu, SWT.SEPARATOR);
 	            
 	            MenuItem newItem = new MenuItem(rightClickMenu, SWT.NONE);
-	            newItem.setText(Constants.TXT_BTN_ADD);
+	            newItem.setText(IConstants.TXT_BTN_ADD);
 	            newItem.setImage(IMAGE_ADD);
 	            newItem.addSelectionListener(listener);
 
 	            MenuItem deleteItem = new MenuItem(rightClickMenu, SWT.NONE);
-	            deleteItem.setText(Constants.TXT_BTN_DELETE);
+	            deleteItem.setText(IConstants.TXT_BTN_DELETE);
 	            deleteItem.setImage(IMAGE_REMOVE);
 	            deleteItem.addSelectionListener(listener);
 	            
@@ -199,7 +201,7 @@ public class SearchTreeComponent extends AbstractComposite
 	
 	public void receivedAction(int type, Object content)
 	{
-		if( Constants.ACTION_LOAD_DATA == type)
+		if( IConstants.ACTION_LOAD_DATA == type)
 		{
 			String[] items = controller.getItemNames();
 			
@@ -214,7 +216,7 @@ public class SearchTreeComponent extends AbstractComposite
 			{
 			}
 			
-			ActionManager.INSTANCE.sendAction(Constants.ACTION_LOG_WRITE_INFO, "Load Items: " + items.length);
+			ActionManager.INSTANCE.sendAction(IConstants.ACTION_LOG_WRITE_INFO, "Load Items: " + items.length);
 			
 		}
 		

@@ -2,7 +2,7 @@ package de.wagentim.protector.entity;
 
 import java.io.Serializable;
 
-import de.etas.tef.production.help.Constants;
+import de.etas.tef.production.help.IConstants;
 
 
 public class Record implements Serializable
@@ -14,7 +14,7 @@ public class Record implements Serializable
 	private static final long serialVersionUID = 1L;
 	
 	private final int id;
-	private String name = Constants.EMPTY_STRING;
+	private String name = IConstants.EMPTY_STRING;
 	
 	public void setName(String name)
 	{

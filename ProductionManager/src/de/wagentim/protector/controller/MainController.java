@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import de.etas.tef.production.help.Constants;
+import de.etas.tef.production.help.IConstants;
 import de.wagentim.protector.db.IDBController;
 import de.wagentim.protector.entity.CellIndex;
 import de.wagentim.protector.entity.Record;
@@ -14,7 +14,7 @@ public class MainController
 	private List<Record> itemList = Collections.emptyList();
 	private IDBController dbHandler = null;
 	private boolean isEditingBlocked = true;
-	private String selectedItem = Constants.EMPTY_STRING;
+	private String selectedItem = IConstants.EMPTY_STRING;
 	
 	public MainController()
 	{

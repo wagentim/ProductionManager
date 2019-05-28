@@ -1,4 +1,4 @@
-package de.etas.tef.production.ui;
+package de.etas.tef.production.ui.common;
 
 public class Starter
 {

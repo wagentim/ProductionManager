@@ -17,7 +17,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.TreeItem;
 
 import de.etas.tef.production.help.ActionManager;
-import de.etas.tef.production.help.Constants;
+import de.etas.tef.production.help.IConstants;
 import de.etas.tef.production.help.IActionListener;
 import de.wagentim.protector.controller.MainController;
 import de.wagentim.protector.entity.CellIndex;
@@ -29,8 +29,8 @@ public abstract class CellEditingListener implements MouseListener, IActionListe
 	protected final MainController controller;
 
 	protected ControlEditor editor = null;
-	protected String newValue = Constants.EMPTY_STRING;
-	protected String oldValue = Constants.EMPTY_STRING;
+	protected String newValue = IConstants.EMPTY_STRING;
+	protected String oldValue = IConstants.EMPTY_STRING;
 	
 	public CellEditingListener(Composite composite, MainController controller)
 	{
@@ -132,7 +132,7 @@ public abstract class CellEditingListener implements MouseListener, IActionListe
 				}
 				else if(event.keyCode == SWT.ESC)
 				{
-					newValue = Constants.EMPTY_STRING;
+					newValue = IConstants.EMPTY_STRING;
 					disposeEditor();
 				}
 			}

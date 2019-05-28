@@ -1,6 +1,6 @@
 package de.etas.tef.production.help;
 
-public final class Constants
+public interface IConstants
 {
 	// constants for the main window size
 	public static final int MAIN_SCREEN_WIDTH = 800;
@@ -55,7 +55,9 @@ public final class Constants
 	public static final String[] TABLE_TITLES = {"Name", "Value"};
 	public static final String TXT_COPY = "Copy";
 	public static final String TXT_PASTE = "Paste";
-	
+	public static final String TXT_FOLDER_PASSWORD_PROTECTOR = "Password";
+	public static final String TXT_RECORD = "Records";
+	public static final String TXT_LOAD_RECORD_ITEM = "Load";
 	
 	public static final int ACTION_NEW_FILE_SELECTED = 0x00;
 	public static final int ACTION_LOG_WRITE_INFO = 0x01;

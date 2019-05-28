@@ -8,7 +8,7 @@ import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.graphics.Color;
 
 import de.etas.tef.production.help.ActionManager;
-import de.etas.tef.production.help.Constants;
+import de.etas.tef.production.help.IConstants;
 import de.etas.tef.production.help.IActionListener;
 
 public class InfoBlockWriter implements IActionListener
@@ -18,7 +18,7 @@ public class InfoBlockWriter implements IActionListener
 	private final Color info;
 	private final Color warning;
 	
-	private String txt = Constants.EMPTY_STRING;
+	private String txt = IConstants.EMPTY_STRING;
 
 	public InfoBlockWriter(final StyledText infoBlock, MainController controller)
 	{
@@ -84,15 +84,15 @@ public class InfoBlockWriter implements IActionListener
 	@Override
 	public void receivedAction(int type, Object content)
 	{
-		if ((type == Constants.ACTION_LOG_WRITE_INFO))
+		if ((type == IConstants.ACTION_LOG_WRITE_INFO))
 		{
 			logInfo(content.toString());
 		} 
-		else if (type == Constants.ACTION_LOG_WRITE_ERROR)
+		else if (type == IConstants.ACTION_LOG_WRITE_ERROR)
 		{
 			logError(content.toString());
 		}
-		else if (type == Constants.ACTION_LOG_WRITE_WARNING)
+		else if (type == IConstants.ACTION_LOG_WRITE_WARNING)
 		{
 			logWarning(content.toString());
 		}
