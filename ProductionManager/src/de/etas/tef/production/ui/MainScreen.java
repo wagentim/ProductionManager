@@ -88,19 +88,12 @@ public class MainScreen
 		GridData gd = new GridData(GridData.FILL_BOTH);
 		tabFolder.setLayoutData(gd);
 		
-		// create Configure Editor Folder 
-//		TabItem item = new TabItem (tabFolder, SWT.NONE);
-//		item.setText ("INI File Editor");
-//		ConfigEditorMainScreen configEditor = new ConfigEditorMainScreen (tabFolder, SWT.NONE);
-//		item.setControl (configEditor);
-		
-		TabItem item = new TabItem (tabFolder, SWT.NONE);
-		item.setText (IConstants.TXT_FOLDER_PASSWORD_PROTECTOR);
-		item.setImage(imageRegister.getImage(IImageConstants.IMAGE_PASSWORD_TITLE));
+		TabItem protectorItem = new TabItem (tabFolder, SWT.NONE);
+		protectorItem.setText (IConstants.TXT_FOLDER_PASSWORD_PROTECTOR);
+		protectorItem.setImage(imageRegister.getImage(IImageConstants.IMAGE_PASSWORD_TITLE));
 		ProtectorMainScreen protectorEditor = new ProtectorMainScreen (tabFolder, SWT.NONE, imageRegister);
-		item.setControl (protectorEditor);
+		protectorItem.setControl (protectorEditor);
 		
-//		tabFolder.setSelection();
 	}
 
 	private void initMainScreen(Composite shell)
