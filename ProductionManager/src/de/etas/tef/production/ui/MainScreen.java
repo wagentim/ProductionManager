@@ -8,6 +8,7 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.ShellAdapter;
 import org.eclipse.swt.events.ShellEvent;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -41,7 +42,6 @@ public class MainScreen
 		Display display = new Display();
 		imageRegister = new ImageRegister(display);
 		Shell shell = new Shell(display);
-		
 		shell.addShellListener(new ShellAdapter()
 		{
 
