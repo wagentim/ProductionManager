@@ -8,7 +8,6 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.ShellAdapter;
 import org.eclipse.swt.events.ShellEvent;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -25,7 +24,6 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 
-import de.etas.tef.config.ui.core.ConfigEditorMainScreen;
 import de.wagentim.common.IConstants;
 import de.wagentim.common.IImageConstants;
 import de.wagentim.common.ImageRegister;
@@ -35,14 +33,6 @@ public class MainScreen
 {
 	private static final SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
 	
-	
-	public final Image IMAGE_PIN;
-	public final Image IMAGE_EXIT;
-	public final Image IMAGE_ABOUT;
-	public final Image IMAGE_CONNECT;
-	public final Image IMAGE_DISCONNECT;
-	public final Image IMAGE_TIME;
-	
 	private Label dateLabel;
 	private ImageRegister imageRegister;
 
@@ -50,14 +40,6 @@ public class MainScreen
 	{
 		Display display = new Display();
 		imageRegister = new ImageRegister(display);
-		
-		IMAGE_PIN = new Image(display, "icons/pin.png");
-		IMAGE_EXIT = new Image(display, "icons/exit.png");
-		IMAGE_ABOUT = new Image(display, "icons/about.png");
-		IMAGE_CONNECT = new Image(display, "icons/connect.png");
-		IMAGE_DISCONNECT = new Image(display, "icons/disconnect.png");
-		IMAGE_TIME = new Image(display, "icons/time.png");
-		
 		Shell shell = new Shell(display);
 		
 		shell.addShellListener(new ShellAdapter()
@@ -107,18 +89,18 @@ public class MainScreen
 		tabFolder.setLayoutData(gd);
 		
 		// create Configure Editor Folder 
-		TabItem item = new TabItem (tabFolder, SWT.NONE);
-		item.setText ("INI File Editor");
-		ConfigEditorMainScreen configEditor = new ConfigEditorMainScreen (tabFolder, SWT.NONE);
-		item.setControl (configEditor);
+//		TabItem item = new TabItem (tabFolder, SWT.NONE);
+//		item.setText ("INI File Editor");
+//		ConfigEditorMainScreen configEditor = new ConfigEditorMainScreen (tabFolder, SWT.NONE);
+//		item.setControl (configEditor);
 		
-		item = new TabItem (tabFolder, SWT.NONE);
+		TabItem item = new TabItem (tabFolder, SWT.NONE);
 		item.setText (IConstants.TXT_FOLDER_PASSWORD_PROTECTOR);
 		item.setImage(imageRegister.getImage(IImageConstants.IMAGE_PASSWORD_TITLE));
 		ProtectorMainScreen protectorEditor = new ProtectorMainScreen (tabFolder, SWT.NONE, imageRegister);
 		item.setControl (protectorEditor);
 		
-		tabFolder.setSelection(1);
+//		tabFolder.setSelection();
 	}
 
 	private void initMainScreen(Composite shell)
@@ -150,7 +132,7 @@ public class MainScreen
 
 	    MenuItem fileExitItem = new MenuItem(fileMenu, SWT.PUSH);
 	    fileExitItem.setText("E&xit");
-	    fileExitItem.setImage(IMAGE_EXIT);
+	    fileExitItem.setImage(imageRegister.getImage(IImageConstants.IMAGE_EXIT));
 	    fileExitItem.addSelectionListener(new SelectionAdapter()
 		{
 	    	@Override
@@ -206,7 +188,7 @@ public class MainScreen
         statusbar.setLayout(layout);
         
         Label image = new Label(statusbar, SWT.NONE);
-        image.setImage(IMAGE_TIME);
+        image.setImage(imageRegister.getImage(IImageConstants.IMAGE_TIME));
         
         dateLabel = new Label(statusbar, SWT.BOLD);
         dateLabel.setLayoutData(new RowData(150, -1));
