@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import de.wagentim.common.db.IResultSetExtractor;
 import de.wagentim.protector.entity.Record;
 
 public class RecordResultExtractor implements IResultSetExtractor<List<Record>>
