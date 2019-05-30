@@ -36,12 +36,15 @@ public class MainScreen
 	
 	private Label dateLabel;
 	private ImageRegister imageRegister;
+	private final Color WHITE;
 
 	public MainScreen()
 	{
 		Display display = new Display();
 		imageRegister = new ImageRegister(display);
+		WHITE = display.getSystemColor(SWT.COLOR_WHITE);
 		Shell shell = new Shell(display);
+		shell.setBackground(WHITE);
 		shell.addShellListener(new ShellAdapter()
 		{
 
@@ -100,16 +103,12 @@ public class MainScreen
 	{
 		Monitor primary = shell.getDisplay().getPrimaryMonitor();
 		Rectangle area = primary.getClientArea();
-		shell.pack();
 		shell.setBounds((Math.abs(area.width - IConstants.MAIN_SCREEN_WIDTH)) / 2,
 				Math.abs((area.height - IConstants.MAIN_SCREEN_HEIGHT)) / 2, IConstants.MAIN_SCREEN_WIDTH,
 				IConstants.MAIN_SCREEN_HEIGHT);
 
 		GridLayout layout = new GridLayout(1, false);
-		layout.marginTop = 0;
-		layout.marginLeft = 0;
-		layout.marginRight = 0;
-		layout.marginBottom = 0;
+		layout.marginHeight = layout.marginWidth = layout.marginTop = layout.marginLeft = layout.marginRight = layout.marginBottom = 0;
 		shell.setLayout(layout);
 	}
 	
