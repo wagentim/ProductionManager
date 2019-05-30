@@ -45,6 +45,8 @@ public class MainScreen
 		WHITE = display.getSystemColor(SWT.COLOR_WHITE);
 		Shell shell = new Shell(display);
 		shell.setBackground(WHITE);
+		shell.setImage(imageRegister.getImage(IImageConstants.IMAGE_HOME));
+		shell.setText(IConstants.TXT_APP);
 		shell.addShellListener(new ShellAdapter()
 		{
 
