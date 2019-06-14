@@ -177,6 +177,7 @@ public class MainScreen implements IStatusBarUpdate
 
 	    MenuItem aboutItem = new MenuItem(aboutMenu, SWT.PUSH);
 	    aboutItem.setText("&About");
+	    aboutItem.setImage(shell.getDisplay().getSystemImage(SWT.ICON_QUESTION));
 	    
 	    shell.setMenuBar(menuBar);
 	}
