@@ -28,21 +28,27 @@ import org.eclipse.swt.widgets.TabItem;
 import de.wagentim.common.IConstants;
 import de.wagentim.common.IImageConstants;
 import de.wagentim.common.ImageRegister;
+import de.wagentim.common.ui.IStatusBarUpdate;
 import de.wagentim.protector.ui.ProtectorMainScreen;
+import de.wagentim.system.ui.SystemMainScreen;
 
-public class MainScreen
+public class MainScreen implements IStatusBarUpdate
 {
 	private static final SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
 	
 	private Label dateLabel;
+	private Label textLabel;
 	private ImageRegister imageRegister;
 	private final Color WHITE;
+	private final Color BLUE;
+	private Composite statusbar;
 
 	public MainScreen()
 	{
 		Display display = new Display();
 		imageRegister = new ImageRegister(display);
 		WHITE = display.getSystemColor(SWT.COLOR_WHITE);
+		BLUE = display.getSystemColor(SWT.COLOR_BLUE);
 		Shell shell = new Shell(display);
 		shell.setBackground(WHITE);
 		shell.setImage(imageRegister.getImage(IImageConstants.IMAGE_HOME));
@@ -96,8 +102,14 @@ public class MainScreen
 		TabItem protectorItem = new TabItem (tabFolder, SWT.NONE);
 		protectorItem.setText (IConstants.TXT_FOLDER_PASSWORD_PROTECTOR);
 		protectorItem.setImage(imageRegister.getImage(IImageConstants.IMAGE_PASSWORD_TITLE));
-		ProtectorMainScreen protectorEditor = new ProtectorMainScreen (tabFolder, SWT.NONE, imageRegister);
+		ProtectorMainScreen protectorEditor = new ProtectorMainScreen (tabFolder, SWT.NONE, imageRegister, this);
 		protectorItem.setControl (protectorEditor);
+		
+		TabItem systemItem = new TabItem (tabFolder, SWT.NONE);
+		systemItem.setText (IConstants.TXT_FOLDER_SYSTEM);
+		systemItem.setImage(imageRegister.getImage(IImageConstants.IMAGE_PASSWORD_TITLE));
+		SystemMainScreen systemEditor = new SystemMainScreen (tabFolder, SWT.NONE, imageRegister, this);
+		systemItem.setControl (systemEditor);
 		
 	}
 
@@ -172,7 +184,7 @@ public class MainScreen
 	private void initStatusBar(Shell shell)
 	{
 		
-		Composite statusbar = new Composite(shell, SWT.BORDER);
+		statusbar = new Composite(shell, SWT.BORDER);
 
         GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
         gridData.heightHint = 16;
@@ -185,10 +197,23 @@ public class MainScreen
         image.setImage(imageRegister.getImage(IImageConstants.IMAGE_TIME));
         
         dateLabel = new Label(statusbar, SWT.BOLD);
-        dateLabel.setLayoutData(new RowData(150, -1));
+        dateLabel.setLayoutData(new RowData(115, -1));
         dateLabel.setText(" "+sdf.format(new Date())+" ");
         
         new Label(statusbar, SWT.SEPARATOR | SWT.VERTICAL);
+        
+        textLabel = new Label(statusbar, SWT.BOLD);
+        textLabel.setLayoutData(new RowData(300, -1));
+	}
+
+	@Override
+	public void statusbarUpdate(String text)
+	{
+		if( text != null && !text.isEmpty() )
+		{
+			textLabel.setText(text);
+			textLabel.setForeground(BLUE);
+		}
 	}
 
 }
