@@ -105,11 +105,11 @@ public class MainScreen implements IStatusBarUpdate
 		ProtectorMainScreen protectorEditor = new ProtectorMainScreen (tabFolder, SWT.NONE, imageRegister, this);
 		protectorItem.setControl (protectorEditor);
 		
-		TabItem systemItem = new TabItem (tabFolder, SWT.NONE);
-		systemItem.setText (IConstants.TXT_FOLDER_SYSTEM);
-		systemItem.setImage(imageRegister.getImage(IImageConstants.IMAGE_PASSWORD_TITLE));
-		SystemMainScreen systemEditor = new SystemMainScreen (tabFolder, SWT.NONE, imageRegister, this);
-		systemItem.setControl (systemEditor);
+//		TabItem systemItem = new TabItem (tabFolder, SWT.NONE);
+//		systemItem.setText (IConstants.TXT_FOLDER_SYSTEM);
+//		systemItem.setImage(imageRegister.getImage(IImageConstants.IMAGE_PASSWORD_TITLE));
+//		SystemMainScreen systemEditor = new SystemMainScreen (tabFolder, SWT.NONE, imageRegister, this);
+//		systemItem.setControl (systemEditor);
 		
 	}
 
