@@ -25,6 +25,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 
+import de.etas.tef.production.zipsftp.gui.FTPMainScreen;
 import de.wagentim.common.IConstants;
 import de.wagentim.common.IImageConstants;
 import de.wagentim.common.ImageRegister;
@@ -104,11 +105,17 @@ public class MainScreen implements IStatusBarUpdate
 		ProtectorMainScreen protectorEditor = new ProtectorMainScreen (tabFolder, SWT.NONE, imageRegister, this);
 		protectorItem.setControl (protectorEditor);
 		
-//		TabItem systemItem = new TabItem (tabFolder, SWT.NONE);
-//		systemItem.setText (IConstants.TXT_FOLDER_SYSTEM);
-//		systemItem.setImage(imageRegister.getImage(IImageConstants.IMAGE_PASSWORD_TITLE));
-//		SystemMainScreen systemEditor = new SystemMainScreen (tabFolder, SWT.NONE, imageRegister, this);
-//		systemItem.setControl (systemEditor);
+		TabItem systemItem = new TabItem (tabFolder, SWT.NONE);
+		systemItem.setText (IConstants.TXT_FOLDER_SYSTEM);
+		systemItem.setImage(imageRegister.getImage(IImageConstants.IMAGE_PASSWORD_TITLE));
+		SystemMainScreen systemEditor = new SystemMainScreen (tabFolder, SWT.NONE, imageRegister, this);
+		systemItem.setControl (systemEditor);
+		
+		TabItem ftpItem = new TabItem (tabFolder, SWT.NONE);
+		ftpItem.setText (IConstants.TXT_FOLDER_SFTP);
+		ftpItem.setImage(imageRegister.getImage(IImageConstants.IMAGE_PASSWORD_TITLE));
+		FTPMainScreen ftpEditor = new FTPMainScreen (tabFolder, SWT.NONE, imageRegister);
+		ftpItem.setControl (ftpEditor);
 		
 	}
 

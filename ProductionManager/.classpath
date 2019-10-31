@@ -6,5 +6,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/Protector"/>
 	<classpathentry kind="lib" path="/Common/libs/swt.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/SystemCollection"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ZipSFTP"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
