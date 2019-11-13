@@ -31,7 +31,6 @@ import de.wagentim.common.IImageConstants;
 import de.wagentim.common.ImageRegister;
 import de.wagentim.common.ui.IStatusBarUpdate;
 import de.wagentim.protector.ui.ProtectorMainScreen;
-import de.wagentim.system.ui.SystemMainScreen;
 
 public class MainScreen implements IStatusBarUpdate
 {

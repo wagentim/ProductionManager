@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="ProductionManager/src"/>
+	<classpathentry kind="lib" path="ProductionManager/jpib/JPIB.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Common"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Protector"/>
+	<classpathentry kind="lib" path="/Common/Common/libs/swt.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
