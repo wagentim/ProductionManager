@@ -25,8 +25,8 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 
+import de.etas.tef.app.IGlobalConstants;
 import de.etas.tef.production.zipsftp.gui.FTPMainScreen;
-import de.wagentim.common.IConstants;
 import de.wagentim.common.IImageConstants;
 import de.wagentim.common.ImageRegister;
 import de.wagentim.common.ui.IStatusBarUpdate;
@@ -53,7 +53,7 @@ public class MainScreen implements IStatusBarUpdate
 		Shell shell = new Shell(display);
 		shell.setBackground(WHITE);
 		shell.setImage(imageRegister.getImage(IImageConstants.IMAGE_HOME));
-		shell.setText(IConstants.TXT_APP);
+		shell.setText(IGlobalConstants.TXT_APP);
 		shell.addShellListener(new ShellAdapter()
 		{
 
@@ -101,19 +101,19 @@ public class MainScreen implements IStatusBarUpdate
 		tabFolder.setLayoutData(gd);
 		
 		TabItem protectorItem = new TabItem (tabFolder, SWT.NONE);
-		protectorItem.setText (IConstants.TXT_FOLDER_PASSWORD_PROTECTOR);
+		protectorItem.setText (IGlobalConstants.TXT_FOLDER_PASSWORD_PROTECTOR);
 		protectorItem.setImage(imageRegister.getImage(IImageConstants.IMAGE_PASSWORD_TITLE));
 		ProtectorMainScreen protectorEditor = new ProtectorMainScreen (tabFolder, SWT.NONE, imageRegister, this);
 		protectorItem.setControl (protectorEditor);
 		
 		TabItem systemItem = new TabItem (tabFolder, SWT.NONE);
-		systemItem.setText (IConstants.TXT_FOLDER_SYSTEM);
+		systemItem.setText (IGlobalConstants.TXT_FOLDER_SYSTEM);
 		systemItem.setImage(imageRegister.getImage(IImageConstants.IMAGE_PASSWORD_TITLE));
 		SystemMainScreen systemEditor = new SystemMainScreen (tabFolder, SWT.NONE, imageRegister, this);
 		systemItem.setControl (systemEditor);
 		
 		TabItem ftpItem = new TabItem (tabFolder, SWT.NONE);
-		ftpItem.setText (IConstants.TXT_FOLDER_SFTP);
+		ftpItem.setText (IGlobalConstants.TXT_FOLDER_SFTP);
 		ftpItem.setImage(imageRegister.getImage(IImageConstants.IMAGE_PASSWORD_TITLE));
 		FTPMainScreen ftpEditor = new FTPMainScreen (tabFolder, SWT.NONE, imageRegister);
 		ftpItem.setControl (ftpEditor);
@@ -124,9 +124,9 @@ public class MainScreen implements IStatusBarUpdate
 	{
 		Monitor primary = shell.getDisplay().getPrimaryMonitor();
 		Rectangle area = primary.getClientArea();
-		shell.setBounds((Math.abs(area.width - IConstants.MAIN_SCREEN_WIDTH)) / 2,
-				Math.abs((area.height - IConstants.MAIN_SCREEN_HEIGHT)) / 2, IConstants.MAIN_SCREEN_WIDTH,
-				IConstants.MAIN_SCREEN_HEIGHT);
+		shell.setBounds((Math.abs(area.width - IGlobalConstants.MAIN_SCREEN_WIDTH)) / 2,
+				Math.abs((area.height - IGlobalConstants.MAIN_SCREEN_HEIGHT)) / 2, IGlobalConstants.MAIN_SCREEN_WIDTH,
+				IGlobalConstants.MAIN_SCREEN_HEIGHT);
 
 		GridLayout layout = new GridLayout(1, false);
 		layout.marginHeight = layout.marginWidth = layout.marginTop = layout.marginLeft = layout.marginRight = layout.marginBottom = 0;
